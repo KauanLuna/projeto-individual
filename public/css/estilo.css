@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: black;
+  background-color: var(--rosa);
 }
 
 :root {
@@ -13,6 +13,10 @@ body {
   --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-footer: 65px;
+  --vermelho: #FF6F61;
+  --rosa: #FFD6DC;
+  --lavanda: #E6E6FA;
+  --preto: black;
 }
 
 .container {
@@ -23,7 +27,7 @@ body {
 
 .header {
   height: var(--tamanho-header);
-  border-bottom: 2px solid #32b9cd;
+  border-bottom: 2px solid var(--preto);
 }
 
 .header .container {
@@ -34,7 +38,7 @@ body {
 
 .header a {
   text-decoration: none;
-  color: #e3b062;
+  color: white;
 }
 
 .agora {
@@ -47,11 +51,11 @@ body {
   align-items: center;
   justify-content: space-between;
   list-style: none;
-  color: #e3b062;
+  color: white;
 }
 
 .titulo {
-  color: #32b9cd;
+  color: white;
   width: fit-content;
   font-weight: 500;
 }
@@ -64,7 +68,7 @@ body {
 
 .banner {
   height: var(--tamanho-banner);
-  color: white;
+  color: var(--vermelho);
   background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
   background-size: cover;
 }
@@ -121,7 +125,7 @@ body {
 /* FOOTER */
 
 .footer {
-  background-color: #32b9cd;
+  background-color: var(--vermelho);
   height: 150px;
   color: #fff;
   display: flex;
@@ -141,8 +145,9 @@ body {
 
 .login {
   height: var(--tamanho-login);
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjZtZnJpY2w2N2w4Y3FwNGRoMzhhcXE2bjN6dW0yNHhmbDlndWg4ZSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/HSCZMUa1ao17h7l5mg/giphy.gif');
   background-size: cover;
+  background-position:center
 }
 
 .login .container {
@@ -153,12 +158,12 @@ body {
 
 .card {
   width: 50%;
-  background-color: #e5e5e5;
+  background-color: white;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: palevioletred;
+  color: var(--vermelho);
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
@@ -183,16 +188,16 @@ body {
 }
 
 .formulario input {
-  border: 2px solid #32b9cd;
+  border: 2px solid var(--preto);
   text-align: center;
   border-radius: 10px;
   margin: 0;
 }
 
 .formulario select {
-  border: 2px solid #32b9cd;
+  border: 2px solid var(--preto);
   background-color: white;
-  color: gray;
+  color: beige;
   height: 36px;
   text-align: center;
   border-radius: 10px;
@@ -214,7 +219,7 @@ body {
   font-weight: 600;
   font-size: 18px;
   color: #fff;
-  background-color: #ED145B;
+  background-color: var(--vermelho);
   width: 120px;
   height: 30px;
   align-self: center;
