@@ -54,8 +54,8 @@
                          Assim que inserir vá para o script abaixo.
                      -->
           <div class="campo">
-            <span>Código de ativação:</span>
-            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
+            <span>Nome:</span>
+            <input id="nome_input" type="text" placeholder="Seu nome" />
           </div>
           <div class="campo">
             <span>Nome:</span>
@@ -116,7 +116,7 @@
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
     var codigoVar = codigo_input.value;
-    var idEmpresaVincular
+    var fkParceiroVar = parceiro_input.value;
 
     // Verificando se há algum campo em branco
     if (
@@ -178,7 +178,7 @@
         cpfServer: cpfVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
+        fk
       }),
     })
       .then(function (resposta) {
