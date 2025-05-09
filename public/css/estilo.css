@@ -1,10 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jersey+15&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 body {
   margin: 0;
   padding: 0;
   font-family: var(--font); 
-  background-color: var(--rosa);
+  background: linear-gradient(#dff1f8, var(--azulClaro));
 }
 
 :root {
@@ -13,13 +21,14 @@ body {
   --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-footer: 65px;
-  --vermelho: #FF6F61;
+  --vermelho: red;
   --rosa: #FFD6DC;
   --lavanda: #E6E6FA;
   --preto: black;
   --brancoRosado : #FAF3F3;
-  --verdeMenta: #D8F3DC;
-  --font: "Sour Gummy", sans-serif;
+  --azul: #3065ac;
+  --azulClaro: lightblue;
+  --font: "Poppins", sans-serif;
 }
 
 .container {
@@ -30,7 +39,6 @@ body {
 
 .header {
   height: var(--tamanho-header);
-  border-bottom: 2px solid var(--preto);
 }
 
 .header .container {
@@ -41,13 +49,24 @@ body {
 
 .header a {
   text-decoration: none;
-  color: var(--preto);
+  color: var(--vermelho);
+  transition: transform 0.3s ease;
+}
+
+.header li {
+  transition: transform 0.5s ease;
+}
+
+.header li:hover {
+  transform: scale(1.1);
 }
 
 .agora a {
   font-weight: 800;
   color: var(--vermelho);
-  text-shadow: 1px 1px black;
+  padding-bottom: 20px;
+  text-shadow: 1px 1px var(--rosa);
+  border-bottom: 2px solid var(--vermelho);
 }
 
 .navbar {
@@ -56,10 +75,10 @@ body {
   align-items: center;
   justify-content: space-between;
   list-style: none;
-  color: var(--preto);
+  color: var(--vermelho);
 }
 
-.logo img{
+.logo img {
   width: 170px;
   height: 170px;
 }
@@ -71,16 +90,20 @@ body {
 /* BANNER */
 
 .banner {
+  display: flex;
   height: var(--tamanho-banner);
   color: var(--vermelho);
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
-  background-size: cover;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1.6s forwards;
 }
 
 .banner .container {
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 100%;
+  width: 100%;
+  margin: 0;
 }
 
 .banner .container p {
@@ -92,44 +115,81 @@ body {
 
 .banner .container span {
   font-weight: 800;
+  color: var(--vermelho);
+  border-bottom: 2px solid var(--vermelho);
 }
 
-/* MISSÃO VISÃO VALORES */
+/*Sobre nós*/
 
 .social {
-  background-color: #e5e5e5;
   display: flex;
+  border-bottom: 1px solid var(--preto);
+  height: 800px;
 }
 
 .social .container {
-  justify-content: center;
-}
-
-.box img {
-  width: 170px;
-}
-
-.social .container .boxes {
   display: flex;
-  justify-content: space-between;
   width: 100%;
-  padding: 30px 0;
+  flex-direction: row;
 }
 
 .social p {
   text-align: center;
 }
 
-.box {
+.social .container {
   display: flex;
   flex-direction: column;
+  margin: 0;
+}
+
+.social .container .subtitulo span {
+  display: flex;
+  font-size: 40px;
+  font-weight: 800;
+  align-self: center;
+  justify-self: center;
+}
+
+.social .container .subtitulo {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--vermelho);
+  padding: 8px;
+  margin: 10px;
+  margin-bottom: 50px;
+  border: var(--preto) 2px solid;
+  border-radius: 10px;
+  box-shadow: var(--preto) 1px 1px 5px;
+}
+
+.texto {
+  display: flex;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.social .container .texto p {
+  display: flex;
+  font-size: 30px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-content: center;
+  color: var(--vermelho);
 }
 
 /* FOOTER */
 
 .footer {
-  background-color: var(--vermelho);
+  background-color: var(--preto);
   height: 150px;
   color: #fff;
   display: flex;
@@ -149,8 +209,6 @@ body {
 
 .login {
   height: var(--tamanho-login);
-  background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjZtZnJpY2w2N2w4Y3FwNGRoMzhhcXE2bjN6dW0yNHhmbDlndWg4ZSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/HSCZMUa1ao17h7l5mg/giphy.gif');
-  background-size: cover;
   background-position: center;
 }
 
@@ -171,6 +229,7 @@ body {
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
+  box-shadow: 1px 1px 5px var(--preto);
 }
 
 .card h2 {
@@ -217,7 +276,7 @@ body {
 
 .botao {
   cursor: pointer;
-  font-family: "Barlow", sans-serif;
+  font-family: var(--font);
   border: 0;
   border-radius: 5px;
   font-weight: 600;
@@ -228,6 +287,7 @@ body {
   height: 30px;
   align-self: center;
   margin-top: 20px;
+  box-shadow: 1px 1px 5px var(--preto);
 }
 
 .loading-div {
@@ -287,7 +347,7 @@ input {
 }
 
 .btn {
-  font-family: "Barlow", sans-serif;
+  font-family: var(--font);
   border: 0;
   border-radius: 5px;
   font-weight: 600;
