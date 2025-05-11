@@ -16,91 +16,111 @@
 </head>
 
 <body onload="listar()">
-  <!--header inicio-->
-  <div class="header">
-    <div class="container">
-      <div class="logo"><img src="./assets/imgs/logoTXT.png" alt=""></div>
-      <ul class="navbar">
-        <li>
-          <a href="index.html">Inicial</a>
-        </li>
-        <li>
-          <a href="simulador.html">Simulador</a>
-        </li>
-        <li>|</li>
-        <li>
-          <a href="login.html">Login</a>
-        </li>
-        <li class="agora">
-          <a href="#">Cadastro</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!--header fim-->
-
-  <div class="login">
-    <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
+  <div class="carregamento"><img src="./assets/imgs/logoBatman.gif" alt="Logo carregando"></div>
+  <div class="conteudoPrincipal">
+    <!--header inicio-->
+    <div class="header">
+      <div class="container">
+        <div class="logo"><img src="./assets/imgs/logoBatman.gif" alt=""></div>
+        <ul class="navbar">
+          <li>
+            <a href="index.html">Inicial</a>
+          </li>
+          <li>
+            <a href="simulador.html">Simulador</a>
+          </li>
+          <li>|</li>
+          <li>
+            <a href="login.html">Login</a>
+          </li>
+          <li class="agora">
+            <a href="#">Cadastro</a>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="container">
-      <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
-        <div class="formulario">
-          <!--
+    <!--header fim-->
+
+    <div class="login">
+      <div class="alerta_erro">
+        <div class="card_erro" id="cardErro">
+          <span id="mensagem_erro"></span>
+        </div>
+      </div>
+      <div class="container">
+        <div class="card card-cadastro">
+          <h2>Bem-vindo!</h2>
+          <div class="formulario">
+            <!--
                          Para inserir mais um campo, copie uma das inputs abaixo.
                          Assim que inserir vá para o script abaixo.
                      -->
-          <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
+            <div class="campo">
+              <span>Nome:</span>
+              <input id="nome_input" type="text" placeholder="Seu nome" />
+            </div>
+            <div class="campo">
+              <span>Nome:</span>
+              <input id="nome_input" type="text" placeholder="Seu nome" />
+            </div>
+            <div class="campo">
+              <span>CPF:</span>
+              <input id="cpf_input" type="text" placeholder="Seu CPF" />
+            </div>
+            <div class="campo">
+              <span>E-mail:</span>
+              <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
+            </div>
+            <div class="campo">
+              <span>Senha:</span>
+              <input id="senha_input" type="password" placeholder="******" />
+            </div>
+            <div class="campo">
+              <span>Confirmação da Senha:</span>
+              <input id="confirmacao_senha_input" type="password" placeholder="******" />
+            </div>
+            <button class="botao" onclick="cadastrar()">Cadastrar</button>
           </div>
-          <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
+          <div id="div_aguardar" class="loading-div">
+            <img src="./assets/circle-loading.gif" id="loading-gif" />
           </div>
-          <div class="campo">
-            <span>CPF:</span>
-            <input id="cpf_input" type="text" placeholder="Seu CPF" />
-          </div>
-          <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
-          </div>
-          <div class="campo">
-            <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" />
-          </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar</button>
-        </div>
-        <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
-        </div>
 
-        <div id="div_erros_login"></div>
+          <div id="div_erros_login"></div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-      <span class="version">v1.0.0</span>
+    <!--footer inicio-->
+    <div class="footer">
+      <div class="container">
+        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
+        <span class="version">v1.0.0</span>
+      </div>
     </div>
+    <!--footer fim-->
   </div>
-  <!--footer fim-->
 </body>
 
 </html>
 
 <script>
+  // Função para ocultar o carregamento e mostrar o conteúdo principal
+  function carregamentoInicial() {
+    const carregamento = document.getElementById('carregamento');
+    const conteudoPrincipal = document.getElementById('conteudoPrincipal');
+
+    conteudoPrincipal.style.display = 'block';
+
+    carregamento.classList.add('sumir');
+
+    setTimeout(() => {
+        carregamento.style.display = 'none';
+        conteudoPrincipal.classList.add('aparecer');
+    }, 1000); // 1 segundos de atraso
+  }
+
+  // Chama a função após um pequeno atraso (2 segundos)
+  setTimeout(carregamentoInicial, 1500);
 
   // Array para armazenar empresas cadastradas para validação de código de ativação 
   let listaEmpresasCadastradas = [];
@@ -142,7 +162,8 @@
       senhaVar.length > 6 ||
       confirmacaoSenhaVar == senhaVar ||
       cpfVar.lenght == 11
-    ) {cardErro.style.display = "block";
+    ) {
+      cardErro.style.display = "block";
       mensagem_erro.innerHTML =
         "(Digite os valores de forma correta nos campos)";
 

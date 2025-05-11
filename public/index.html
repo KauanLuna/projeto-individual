@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>AmorDB | Página Inicial</title>
+  <title>The Batman:  | Página Inicial</title>
 
   <script src="./js/sessao.js"></script>
 
@@ -16,51 +16,75 @@
 </head>
 
 <body>
-  <div class="header">
-    <div class="container">
-      <div class="logo"><img src="./assets/imgs/logoTXT.png"></div>
-      <ul class="navbar">
-        <li class="agora">
-          <a href="#">Inicial</a>
-        </li>
-        <li>
-          <a href="simulador.html">Simulador</a>
-        </li>
-        <li>|</li>
-        <li>
-          <a href="login.html">Login</a>
-        </li>
-        <li>
-          <a href="cadastro.html">Cadastro</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <div class="carregamento" id="carregamento"><img src="./assets/imgs/logoBatman.gif" alt="Logo carregando"></div>
 
-  <div class="banner">
-    <div class="container">
-      <p>Guardando seus <span>momentos</span> com muito <span>amor</span> e carinho.</p>
-      <img
-        src="https://media.giphy.com/media/rVUgg2B0PPyIq6PQSf/giphy.gif?cid=ecf05e47a0ug408vur5qi39goqvmefovldn0wfkjcte8e5ah&ep=v1_stickers_search&rid=giphy.gif&ct=s">
-    </div>
-  </div>
-
-  <div class="social">
-    <div class="container">
-      <div class="subtitulo">
-        <span>❤   Sobre nós   ❤</span>
-      </div>
-      <div class="texto">
-        <p>O AmorDB é um banco de dados que armazena suas memórias mais queridas, com segurança e carinho.</p>
+  <div class="conteudoPrincipal" id="conteudoPrincipal">
+    <div class="header">
+      <div class="container">
+        <div class="logo"><img src="assets/imgs/logoBatman.gif" alt=""></div>
+        <ul class="navbar">
+          <li class="agora">
+            <a href="#">Inicial</a>
+          </li>
+          <li>
+            <a href="simulador.html">Simulador</a>
+          </li>
+          <li>|</li>
+          <li>
+            <a href="login.html">Login</a>
+          </li>
+          <li>
+            <a href="cadastro.html">Cadastro</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
 
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
+    <div class="banner">
+      <div class="container">
+        <img src="assets/imgs/batman.gif" alt="Imagem do batman">
+        <p>"Eles pensam que estou escondido nas <span>sombras,</span> porém eu sou as <span>sombras...</span>"</p>
+      </div>
+    </div>
+
+    <div class="social">
+      <div class="container">
+        <div class="subtitulo">
+          <span>História</span>
+        </div>
+        <div class="texto">
+          <p>O AmorDB é um banco de dados que armazena suas memórias mais queridas, com segurança e carinho.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
+      </div>
     </div>
   </div>
 </body>
 
 </html>
+<script>
+
+  // Função para ocultar o carregamento e mostrar o conteúdo principal
+  function carregamentoInicial() {
+    const carregamento = document.getElementById('carregamento');
+    const conteudoPrincipal = document.getElementById('conteudoPrincipal');
+
+    conteudoPrincipal.style.display = 'block';
+
+    carregamento.classList.add('sumir');
+
+    setTimeout(() => {
+        carregamento.style.display = 'none';
+        conteudoPrincipal.classList.add('aparecer');
+    }, 1000); // 1 segundos de atraso
+  }
+
+  // Chama a função após um pequeno atraso (2 segundos)
+  setTimeout(carregamentoInicial, 1500);
+
+</script>

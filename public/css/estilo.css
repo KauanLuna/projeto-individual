@@ -11,8 +11,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: var(--font); 
-  background: linear-gradient(#dff1f8, var(--azulClaro));
+  font-family: var(--font);
+  background: var(--preto);
 }
 
 :root {
@@ -25,10 +25,40 @@ body {
   --rosa: #FFD6DC;
   --lavanda: #E6E6FA;
   --preto: black;
-  --brancoRosado : #FAF3F3;
+  --brancoRosado: #FAF3F3;
   --azul: #3065ac;
   --azulClaro: lightblue;
   --font: "Poppins", sans-serif;
+
+}
+
+.carregamento {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--preto);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.carregento.sumir {
+  opacity: 0;
+}
+
+.conteudoPrincipal {
+  display: none;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.conteudoPrincipal.aparecer {
+  opacity: 1;
 }
 
 .container {
@@ -39,6 +69,8 @@ body {
 
 .header {
   height: var(--tamanho-header);
+  border-bottom: 1px solid var(--vermelho);
+  box-shadow: 0px 5px 70px var(--vermelho);
 }
 
 .header .container {
@@ -55,17 +87,18 @@ body {
 
 .header li {
   transition: transform 0.5s ease;
+  cursor: pointer;
 }
 
 .header li:hover {
   transform: scale(1.1);
+  text-shadow: 0 0 5px var(--vermelho);
 }
 
 .agora a {
   font-weight: 800;
   color: var(--vermelho);
-  padding-bottom: 20px;
-  text-shadow: 1px 1px var(--rosa);
+  padding-bottom: 10px;
   border-bottom: 2px solid var(--vermelho);
 }
 
@@ -93,7 +126,6 @@ body {
   display: flex;
   height: var(--tamanho-banner);
   color: var(--vermelho);
-  opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 1.6s forwards;
 }
@@ -115,7 +147,6 @@ body {
 
 .banner .container span {
   font-weight: 800;
-  color: var(--vermelho);
   border-bottom: 2px solid var(--vermelho);
 }
 
@@ -123,7 +154,6 @@ body {
 
 .social {
   display: flex;
-  border-bottom: 1px solid var(--preto);
   height: 800px;
 }
 
@@ -147,8 +177,10 @@ body {
   display: flex;
   font-size: 40px;
   font-weight: 800;
+  color: var(--vermelho);
   align-self: center;
   justify-self: center;
+  text-shadow: 0 0 5px var(--vermelho);
 }
 
 .social .container .subtitulo {
@@ -158,13 +190,9 @@ body {
   align-content: center;
   width: fit-content;
   height: fit-content;
-  background-color: var(--vermelho);
   padding: 8px;
   margin: 10px;
   margin-bottom: 50px;
-  border: var(--preto) 2px solid;
-  border-radius: 10px;
-  box-shadow: var(--preto) 1px 1px 5px;
 }
 
 .texto {
@@ -191,9 +219,12 @@ body {
 .footer {
   background-color: var(--preto);
   height: 150px;
-  color: #fff;
+  color: var(--vermelho);
+  border-top: 1px solid var(--vermelho);
   display: flex;
   font-size: 15px;
+  box-shadow: 0px -5px 70px var(--vermelho);
+  position: relative;
 }
 
 .footer .container {
@@ -209,32 +240,63 @@ body {
 
 .login {
   height: var(--tamanho-login);
-  background-position: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .login .container {
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  justify-self: flex-start;
+  align-self: flex-start;
   height: 100%;
+  margin: 0;
+  width: 45%;
+  border-right: 2px solid var(--vermelho);
+}
+
+#img_morcego {
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  padding: 0;
 }
 
 .card {
-  width: 50%;
-  background-color: var(--brancoRosado);
-  border-radius: 10px;
+  width: 100%;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: var(--vermelho);
+  align-self: center;
+  justify-self: flex-start;
+  color: var(--preto);
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
-  box-shadow: 1px 1px 5px var(--preto);
 }
 
 .card h2 {
   margin: 0;
   font-size: 30px;
+  color: var(--vermelho);
+}
+
+.titulo_formulario {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 10px;
+}
+
+.titulo_formulario img {
+  width: 100px;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  background: var(--vermelho);
+  border-radius: 4000px;
 }
 
 .formulario {
@@ -248,13 +310,19 @@ body {
 .formulario span {
   font-size: 15px;
   font-weight: 800;
+  color: var(--vermelho);
 }
 
 .formulario input {
-  border: 1.5px solid var(--preto);
+  border-bottom: 1.5px solid var(--vermelho);
   text-align: center;
+  text-justify: center;
   border-radius: 8px;
   margin: 0;
+  box-shadow: 1px 1px 10px var(--vermelho);
+  font-family: var(--font);
+  font-weight: 600;
+  color: var(--vermelho);
 }
 
 .formulario select {
@@ -272,22 +340,31 @@ body {
   flex-direction: column;
   justify-content: start;
   padding: 5px 0;
+  margin-bottom: 20px;
 }
 
 .botao {
   cursor: pointer;
   font-family: var(--font);
-  border: 0;
+  border: 1px solid var(--vermelho);
   border-radius: 5px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 15px;
   color: #fff;
-  background-color: var(--vermelho);
+  background-color: var(--preto);
   width: 120px;
   height: 30px;
   align-self: center;
   margin-top: 20px;
-  box-shadow: 1px 1px 5px var(--preto);
+  box-shadow: 0px 0px 10px var(--vermelho);
+  text-align: center;
+}
+
+.botao:hover {
+  background-color: var(--vermelho);
+  color: var(--preto);
+  transition: all 0.6s ease;
+  scale: 1.1;
 }
 
 .loading-div {
@@ -306,7 +383,7 @@ body {
 
 /* FORMULARIO */
 
-.alerta_erro{
+.alerta_erro {
   display: flex;
   justify-content: flex-end;
 }
@@ -323,7 +400,7 @@ body {
   margin-right: 10%;
 }
 
-.card_erro #mensagem_erro{
+.card_erro #mensagem_erro {
   font-weight: 500;
   font-size: 20px;
 }
@@ -379,7 +456,7 @@ input {
 
 .simulador .container {
   flex-direction: column;
-  overflow: scroll; 
+  overflow: scroll;
   height: var(--tamanho-simulador);
 }
 
@@ -423,9 +500,23 @@ input {
 }
 
 @keyframes bell {
-  0%   {transform: rotate(25deg)}
-  25%  {transform: rotate(-25deg)}
-  50%  {transform: rotate(25deg)}
-  75%  {transform: rotate(-25deg)}
-  100% {transform: rotate(25deg)}
+  0% {
+    transform: rotate(25deg)
+  }
+
+  25% {
+    transform: rotate(-25deg)
+  }
+
+  50% {
+    transform: rotate(25deg)
+  }
+
+  75% {
+    transform: rotate(-25deg)
+  }
+
+  100% {
+    transform: rotate(25deg)
+  }
 }
