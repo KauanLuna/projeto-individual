@@ -174,6 +174,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
+  margin-bottom: 20px;
 }
 
 .social .container .subtitulo span {
@@ -211,6 +212,7 @@ body {
   height: 100%;
   justify-content: center;
   align-content: center;
+  margin-bottom: 20px;
 }
 
 .social .container .corpo p {
