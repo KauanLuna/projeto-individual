@@ -16,12 +16,12 @@
 </head>
 
 <body onload="listar()">
-  <div class="carregamento"><img src="./assets/imgs/logoBatman.gif" alt="Logo carregando"></div>
-  <div class="conteudoPrincipal">
+  <div class="carregamento" id="carregamento"><img src="./assets/imgs/logoBatman.gif" alt="Logo carregando"></div>
+  <div class="conteudoPrincipal" id="conteudoPrincipal">
     <!--header inicio-->
     <div class="header">
       <div class="container">
-        <div class="logo"><img src="./assets/imgs/logoBatman.gif" alt=""></div>
+        <div class="logo"><img src="./assets/imgs/logoBatSite.png" alt=""></div>
         <ul class="navbar">
           <li>
             <a href="index.html">Inicial</a>
@@ -49,16 +49,12 @@
       </div>
       <div class="container">
         <div class="card card-cadastro">
-          <h2>Bem-vindo!</h2>
+          <h2>BatCadastro</h2>
           <div class="formulario">
             <!--
                          Para inserir mais um campo, copie uma das inputs abaixo.
                          Assim que inserir vá para o script abaixo.
                      -->
-            <div class="campo">
-              <span>Nome:</span>
-              <input id="nome_input" type="text" placeholder="Seu nome" />
-            </div>
             <div class="campo">
               <span>Nome:</span>
               <input id="nome_input" type="text" placeholder="Seu nome" />
@@ -88,6 +84,9 @@
           <div id="div_erros_login"></div>
         </div>
       </div>
+      <div class="img_lateral">
+        <img src="./assets/imgs/loginIMG.jpg" alt="Imagem do batman">
+      </div>
     </div>
 
     <!--footer inicio-->
@@ -114,8 +113,8 @@
     carregamento.classList.add('sumir');
 
     setTimeout(() => {
-        carregamento.style.display = 'none';
-        conteudoPrincipal.classList.add('aparecer');
+      carregamento.style.display = 'none';
+      conteudoPrincipal.classList.add('aparecer');
     }, 1000); // 1 segundos de atraso
   }
 
@@ -135,8 +134,6 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
-    var fkParceiroVar = parceiro_input.value;
 
     // Verificando se há algum campo em branco
     if (
@@ -173,18 +170,6 @@
       setInterval(sumirMensagem, 5000);
     }
 
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
-      }
-    }
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
