@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Jersey+15&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
 @keyframes fadeInUp {
   to {
     opacity: 1;
@@ -22,12 +21,8 @@ body {
   --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-footer: 65px;
   --vermelho: red;
-  --rosa: #FFD6DC;
-  --lavanda: #E6E6FA;
+  --verde: #2CFF05;
   --preto: black;
-  --brancoRosado: #FAF3F3;
-  --azul: #3065ac;
-  --azulClaro: lightblue;
   --font: "Poppins", sans-serif;
 
 }
@@ -42,7 +37,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
   opacity: 1;
   transition: opacity 1s ease;
 }
@@ -66,6 +60,8 @@ body {
   width: 80%;
   margin: auto;
 }
+
+/*Barra de navegação*/
 
 .header {
   height: var(--tamanho-header);
@@ -97,7 +93,6 @@ body {
 
 .agora a {
   font-weight: 800;
-  color: var(--vermelho);
   padding-bottom: 5px;
   border-bottom: 2px solid var(--vermelho);
 }
@@ -109,6 +104,31 @@ body {
   justify-content: space-between;
   list-style: none;
   color: var(--vermelho);
+  font-size: 16px;
+}
+
+.interrogacao a {
+  color: var(--vermelho);
+  transition: all 0.5s ease;
+}
+
+.interrogacao {
+  color: var(--vermelho);
+  transition: all 0.6s ease;
+}
+
+.interrogacao a:hover {
+  text-shadow: 0 0 10px var(--verde);
+  color: var(--verde);
+  transition: all 0.6s ease;
+  transform: scale(1.1);
+}
+
+.interrogacao:hover {
+  text-shadow: 0 0 10px var(--verde);
+  color: var(--verde);
+  transition: all 0.6s ease;
+  transform: scale(1.1);
 }
 
 .logo img {
@@ -120,113 +140,7 @@ body {
   margin: 0;
 }
 
-/* BANNER */
-
-.banner {
-  display: flex;
-  height: var(--tamanho-banner);
-  color: var(--vermelho);
-  transform: translateY(20px);
-  animation: fadeInUp 1.6s forwards;
-}
-
-.banner .container {
-  justify-content: space-around;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  margin: 0;
-}
-
-.banner .container p {
-  width: 50%;
-  margin: 0;
-  padding: 0;
-  font-size: 36px;
-}
-
-.banner .container span {
-  font-weight: 800;
-  border-bottom: 2px solid var(--vermelho);
-}
-
-/*Sobre nós*/
-
-.social {
-  display: flex;
-  height: fit-content;
-  flex-direction: column;
-}
-
-.social .container {
-  display: flex;
-  width: 80%;
-  flex-direction: row;
-  align-self: center;
-  justify-self: flex-start;
-}
-
-.social p {
-  text-align: center;
-}
-
-.social .container {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  margin-bottom: 20px;
-}
-
-.social .container .subtitulo span {
-  display: flex;
-  font-size: 40px;
-  font-weight: 600;
-  color: var(--vermelho);
-  align-self: center;
-  justify-self: center;
-}
-
-.social .container .subtitulo {
-  display: flex;
-  align-self: center;
-  justify-content: center;
-  align-content: center;
-  width: fit-content;
-  height: fit-content;
-  padding: 8px;
-  margin-bottom: 20px;
-}
-
-.corpo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-.corpo .texto {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  height: 100%;
-  justify-content: center;
-  align-content: center;
-  margin-bottom: 20px;
-}
-
-.social .container .corpo p {
-  display: flex;
-  font-size: 20px;
-  font-weight: 400;
-  margin: 0;
-  padding: 0;
-  justify-content: center;
-  align-content: center;
-  color: var(--vermelho);
-}
-
-/* FOOTER */
+/*Rodapé*/
 
 .footer {
   background-color: var(--preto);
@@ -248,15 +162,15 @@ body {
   font-size: 12px;
 }
 
-/* LOGIN */
+/*Tela de cadastro*/
 
-.login {
+.cadastro {
   height: var(--tamanho-login);
   display: flex;
   flex-direction: row;
 }
 
-.login .container {
+.cadastro .container {
   position: relative;
   justify-self: flex-start;
   align-self: flex-start;
@@ -266,13 +180,13 @@ body {
   border-right: 2px solid var(--vermelho);
 }
 
-.login .img_lateral {
+.cadastro .img_lateral {
   width: 100%;
   height: 100%;
   align-self: flex-end;
 }
 
-.login .img_lateral img {
+.cadastro .img_lateral img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -397,7 +311,7 @@ body {
   width: 50px;
 }
 
-#div_erros_login {
+#div_erros_cadastro {
   display: none
 }
 
@@ -467,20 +381,6 @@ input {
   height: 50px;
   width: 50px;
 }
-
-/* SIMULADOR */
-
-.simulador {
-  color: white;
-}
-
-.simulador .container {
-  flex-direction: column;
-  overflow: scroll;
-  height: var(--tamanho-simulador);
-}
-
-/* ALERTA */
 
 #alerta {
   position: absolute;
