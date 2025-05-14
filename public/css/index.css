@@ -17,7 +17,7 @@ body {
 
 :root {
   --tamanho-header: 80px;
-  --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-conteudoInicial: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-footer: 65px;
@@ -148,15 +148,15 @@ body {
 
 /*Tela Inicial*/
 
-.banner {
+.conteudoInicial {
   display: flex;
-  height: var(--tamanho-banner);
+  height: var(--tamanho-conteudoInicial);
   color: var(--branco);
   transform: translateY(20px);
   animation: fadeInUp 1.6s forwards;
 }
 
-.banner .container {
+.conteudoInicial .container {
   justify-content: space-around;
   align-items: center;
   height: 100%;
@@ -164,7 +164,7 @@ body {
   margin: 0;
 }
 
-.banner .container p {
+.conteudoInicial .container p {
   width: 50%;
   margin: 0;
   padding: 0;
@@ -172,18 +172,18 @@ body {
   text-shadow: 0px 0px 5px var(--vermelho);
 }
 
-.banner .container span {
+.conteudoInicial .container span {
   font-weight: 800;
   border-bottom: 2px solid var(--vermelho);
 }
 
-.social {
+.conteudoFilme {
   display: flex;
   height: fit-content;
   flex-direction: column;
 }
 
-.social .container {
+.conteudoFilme .container {
   display: flex;
   width: 80%;
   flex-direction: row;
@@ -191,18 +191,18 @@ body {
   justify-self: flex-start;
 }
 
-.social p {
+.conteudoFilme p {
   text-align: center;
 }
 
-.social .container {
+.conteudoFilme .container {
   display: flex;
   flex-direction: column;
   margin: 0;
   margin-bottom: 20px;
 }
 
-.social .container .subtitulo span {
+.conteudoFilme .container .subtitulo span {
   display: flex;
   font-size: 40px;
   font-weight: 600;
@@ -212,7 +212,7 @@ body {
   text-shadow: 0px 0px 5px var(--vermelho);
 }
 
-.social .container .subtitulo {
+.conteudoFilme .container .subtitulo {
   display: flex;
   align-self: center;
   justify-content: center;
@@ -245,7 +245,7 @@ body {
   position: relative;
 }
 
-.social .container .corpo .texto p {
+.conteudoFilme .container .corpo .texto p {
   display: flex;
   font-size: 20px;
   font-weight: 400;

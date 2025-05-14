@@ -60,14 +60,6 @@
               <input id="nome_input" type="text" placeholder="Seu nome" />
             </div>
             <div class="campo">
-              <span>CPF:</span>
-              <input id="cpf_input" type="text" placeholder="Seu CPF" />
-            </div>
-            <div class="campo">
-              <span>E-mail:</span>
-              <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-            </div>
-            <div class="campo">
               <span>Senha:</span>
               <input id="senha_input" type="password" placeholder="******" />
             </div>
@@ -118,7 +110,7 @@
     }, 1000); // 1 segundos de atraso
   }
 
-  // Chama a função após um pequeno atraso (2 segundos)
+  // Chama a função responsável por realizar o carregamento da página, após um pequeno atraso (1.5 segundos)
   setTimeout(carregamentoInicial, 1500);
 
   // Array para armazenar empresas cadastradas para validação de código de ativação 
@@ -130,23 +122,18 @@
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var nomeVar = nome_input.value;
-    var cpfVar = cpf_input.value;
-    var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
-      cpfVar == "" ||
-      emailVar == "" ||
       senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      codigoVar == ""
+      confirmacaoSenhaVar == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+        "(Preencha todos os campos para realizar o cadastro)";
 
       finalizarAguardar();
       return false;
@@ -155,10 +142,8 @@
     }
     if (
       nomeVar.length < 1 ||
-      emailVar.allincludes('@') && emailVar.includes('.') == true ||
-      senhaVar.length > 6 ||
-      confirmacaoSenhaVar == senhaVar ||
-      cpfVar.lenght == 11
+      senhaVar.length >= 6 ||
+      confirmacaoSenhaVar != senhaVar
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
@@ -181,10 +166,7 @@
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
-        cpfServer: cpfVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-        fk
+        senhaServer: senhaVar
       }),
     })
       .then(function (resposta) {
