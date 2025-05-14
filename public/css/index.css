@@ -77,8 +77,13 @@ body {
 
 .header a {
   text-decoration: none;
+  color: var(--branco);
+  transition: transform 0.6s ease;
+}
+
+.header a:hover {
   color: var(--vermelho);
-  transition: transform 0.3s ease;
+  transition: transform 0.6s ease;
 }
 
 .header li {
@@ -88,6 +93,7 @@ body {
 
 .header li:hover {
   transform: scale(1.1);
+  color: var(--vermelho);
   text-shadow: 0 0 5px var(--vermelho);
 }
 
@@ -95,6 +101,7 @@ body {
   font-weight: 800;
   padding-bottom: 5px;
   border-bottom: 2px solid var(--vermelho);
+  color: var(--vermelho);
 }
 
 .navbar {
@@ -103,17 +110,17 @@ body {
   align-items: center;
   justify-content: space-between;
   list-style: none;
-  color: var(--vermelho);
+  color: var(--branco);
   font-size: 16px;
 }
 
 .interrogacao a {
-  color: var(--vermelho);
+  color: var(--branco);
   transition: all 0.5s ease;
 }
 
 .interrogacao {
-  color: var(--vermelho);
+  color: var(--branco);
   transition: all 0.6s ease;
 }
 
@@ -144,7 +151,7 @@ body {
 .banner {
   display: flex;
   height: var(--tamanho-banner);
-  color: var(--vermelho);
+  color: var(--branco);
   transform: translateY(20px);
   animation: fadeInUp 1.6s forwards;
 }
@@ -162,6 +169,7 @@ body {
   margin: 0;
   padding: 0;
   font-size: 36px;
+  text-shadow: 0px 0px 5px var(--vermelho);
 }
 
 .banner .container span {
@@ -198,9 +206,10 @@ body {
   display: flex;
   font-size: 40px;
   font-weight: 600;
-  color: var(--vermelho);
+  color: var(--branco);
   align-self: center;
   justify-self: center;
+  text-shadow: 0px 0px 5px var(--vermelho);
 }
 
 .social .container .subtitulo {
@@ -233,11 +242,10 @@ body {
 }
 
 .corpo .imagem img {
-  z-index: 0;
   position: relative;
 }
 
-.social .container .corpo p {
+.social .container .corpo .texto p {
   display: flex;
   font-size: 20px;
   font-weight: 400;
@@ -245,7 +253,8 @@ body {
   padding: 0;
   justify-content: center;
   align-content: center;
-  color: var(--vermelho);
+  color: var(--branco);
+  text-shadow: 0px 0px 5px var(--vermelho);
 }
 
 /*Rodapé*/
@@ -255,7 +264,7 @@ body {
   flex-direction: row;
   background-color: var(--preto);
   height: 100%;
-  color: var(--vermelho);
+  color: var(--branco);
   border-top: 1px solid var(--vermelho);
   font-size: 15px;
   box-shadow: 0px -5px 70px var(--vermelho);
