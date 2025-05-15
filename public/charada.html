@@ -41,46 +41,44 @@
             </div>
         </div>
 
-
-        <!-- simulador inicio -->
         <div class="charada">
             <div class="container">
-
+                <div class="card card-charada">
+                    <h2>Charada</h2>
+                    <div class="inicioJogo">
+                        <p>Clique para começar o jogo...</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <!-- simulador fim -->
-
-        <!--footer inicio-->
-        <div class="footer">
-            <div class="container">
-                <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-                <span class="version">v1.0.0</span>
+            <div class="footer">
+                <div class="container">
+                    <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
+                    <span class="version">v1.0.0</span>
+                </div>
             </div>
-        </div>
-        <!--footer fim-->
 
-    </div>
+        </div>
 </body>
 
 </html>
 <script>
 
-  // Função para ocultar o carregamento e mostrar o conteúdo principal
-  function carregamentoInicial() {
-    const carregamento = document.getElementById('carregamento');
-    const conteudoPrincipal = document.getElementById('conteudoPrincipal');
+    // Função para ocultar o carregamento e mostrar o conteúdo principal
+    function carregamentoInicial() {
+        const carregamento = document.getElementById('carregamento');
+        const conteudoPrincipal = document.getElementById('conteudoPrincipal');
 
-    conteudoPrincipal.style.display = 'block';
+        conteudoPrincipal.style.display = 'block';
 
-    carregamento.classList.add('sumir');
+        carregamento.classList.add('sumir');
 
-    setTimeout(() => {
-        carregamento.style.display = 'none';
-        conteudoPrincipal.classList.add('aparecer');
-    }, 1000); // 1 segundos de atraso
-  }
+        setTimeout(() => {
+            carregamento.style.display = 'none';
+            conteudoPrincipal.classList.add('aparecer');
+        }, 1000); // 1 segundos de atraso
+    }
 
-  // Chama a função após um pequeno atraso (2 segundos)
-  setTimeout(carregamentoInicial, 1500);
+    // Chama a função após um pequeno atraso (2 segundos)
+    setTimeout(carregamentoInicial, 1500);
 
 </script>

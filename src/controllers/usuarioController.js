@@ -1,16 +1,16 @@
 var usuarioModel = require("../models/usuarioModel");
 
 function autenticar(req, res) {
-    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
-    if (nome == undefined) {
-        res.status(400).send("Preencha o campo nome");
+    if (email == undefined) {
+        res.status(400).send("Preencha o campo email!");
     } else if (senha == undefined) {
         res.status(400).send("Preencha o campo senha!");
     } else {
 
-        usuarioModel.autenticar(nome, senha)
+        usuarioModel.autenticar(email, senha)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
@@ -18,10 +18,11 @@ function autenticar(req, res) {
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
+                        res.status(200).json(resultadoAutenticar[0]);
                     } else if (resultadoAutenticar.length == 0) {
-                        res.status(403).send("Nome ou senha inválido(s)");
+                        res.status(403).send("Email ou senha inválido(s)");
                     } else {
-                        res.status(403).send("Mais de um usuário com o mesmo Nome e senha!");
+                        res.status(403).send("Mais de um usuário com o mesmo email e senha!");
                     }
                 }
             ).catch(
@@ -38,6 +39,7 @@ function autenticar(req, res) {
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
     // Faça as validações dos valores
@@ -45,10 +47,12 @@ function cadastrar(req, res) {
         res.status(400).send("Preencha o campo nome!");
     } else if (senha == undefined) {
         res.status(400).send("Preencha o campo senha!");
+    } else if (email == undefined) {
+        res.status(400).send("Preencha o campo email!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, senha)
+        usuarioModel.cadastrar(nome, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);

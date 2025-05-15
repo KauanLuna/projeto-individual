@@ -57,7 +57,7 @@
                     </div>
                     <div class="formulario">
                         <div class="campo">
-                            <span>Usuário:</span>
+                            <span>Email:</span>
                             <input id="email_input" type="text" placeholder="Digite o seu nome de usuário">
                         </div>
                         <div class="campo">
@@ -152,7 +152,6 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";
