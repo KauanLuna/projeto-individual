@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Jersey+15&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
 
 @keyframes fadeInUp {
   to {
@@ -22,6 +23,7 @@ body {
   --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-footer: 65px;
   --vermelho: red;
+  --branco: white;
   --verde: #2CFF05;
   --preto: black;
   --font: "Poppins", sans-serif;
@@ -139,6 +141,41 @@ body {
 
 .header h1 {
   margin: 0;
+}
+
+/*Tela inicial*/
+
+.charada {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  align-self: center;
+  justify-content: center;
+}
+
+.charada .container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-self: center;
+  margin: 0;
+  width: 100%;
+}
+
+.charada .container .card {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  flex-direction: column;
+}
+
+.charada .container .card span {
+  color: var(--branco);
+  font-family: "Rubik Glitch", system-ui;
+  font-size: 40px;
+  font-weight: 800;
+  align-self: center;
+  justify-self: center;
 }
 
 /*Rodapé*/
