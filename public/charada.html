@@ -22,14 +22,12 @@
         <!--header inicio-->
         <div class="header">
             <div class="container">
-                <h1 class="logo"><img src="./assets/imgs/logoBatSite.png" alt=""></h1>
+                <div class="logo"><img src="./assets/imgs/logoBatSite.png"></div>
                 <ul class="navbar">
                     <li>
                         <a href="./index.html">Inicial</a>
                     </li>
-                    <div class="interrogacao">
-                        <li class="agora">?</li>
-                    </div>
+                    <li class="agora"><span class="interrogacao">?</span></li>
                     <li>|</li>
                     <li>
                         <a href="./login.html">Login</a>
@@ -40,24 +38,27 @@
                 </ul>
             </div>
         </div>
+        <!--header fim-->
 
         <div class="charada">
             <div class="container">
-                <div class="card card-charada">
-                    <h2>Charada</h2>
-                    <div class="inicioJogo">
-                        <p>Clique para começar o jogo...</p>
+                <div class="inicioJogo">
+                    <h2>Quiz: Charada</h2>
+                    <div class="input_e_resultado">
+                        <input type="text" class="input_resposta" placeholder="Sua resposta..." />
+                        <button onclick="checarResposta()">Responder</button>
+                        <p class="resultado"></p>
                     </div>
                 </div>
             </div>
-            <div class="footer">
-                <div class="container">
-                    <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-                    <span class="version">v1.0.0</span>
-                </div>
-            </div>
-
         </div>
+        <div class="footer">
+            <div class="container">
+                <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
+                <span class="version">v1.0.0</span>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
