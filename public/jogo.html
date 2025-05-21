@@ -45,16 +45,20 @@
                     <h1>Quem é o Vilão?</h1>
                 </div>
                 <div class="pista_box">
-                    <p id="pista">Clique no botão para a primeira pista.</p>
+                    <p id="pista" class="pista">Clique no botão para a primeira pista.</p>
                     <button onclick="mostrarProximaPista()">Mostrar Pista</button>
                 </div>
                 <div id="suspeitos" class="suspeitos">
-                    <h2>Quem é o culpado?</h2>
-                    <button onclick="verificarResposta('charada')">Charada</button>
-                    <button onclick="verificarResposta('pinguim')">Pinguim</button>
-                    <button onclick="verificarResposta('falcone')">Carmine Falcone</button>
+                    <div class="titulo">
+                        <h2>Quem é o culpado?</h2>
+                    </div>
+                    <div class="botoes">
+                        <button onclick="verificarResposta('charada')">Charada</button>
+                        <button onclick="verificarResposta('pinguim')">Pinguim</button>
+                        <button onclick="verificarResposta('falcone')">Carmine Falcone</button>
+                    </div>
                 </div>
-                <p class="resultado"></p>
+                <p class="resultado" id="resultado"></p>
             </div>
         </div>
         <div class="footer">
@@ -88,10 +92,31 @@
     setTimeout(carregamentoInicial, 1500);
 
     const pistas = [
-        "Ele costuma deixar enigmas como mensagens.",
-        "Foi visto usando uma máscara estranha.",
-        "Se comunica com vídeos enigmáticos.",
-    ];
+        {
+            vilao: "charada",
+            pistas: [
+                "Ele costuma deixar enigmas como mensagens.",
+                "Foi visto usando uma máscara estranha.",
+                "Se comunica com vídeos enigmáticos."
+            ]
+        },
+        {
+            vilao: "pinguim",
+            pistas: [
+                "Tem conexões com o submundo de Gotham, especialmente com bares noturnos.",
+                 "É manco e costuma andar com passos pesados e claudicantes.",
+                 "Gosta de usar apelidos sarcásticos e sempre parece saber mais do que diz."
+            ] 
+        },
+        {
+            vilao: "carmine falcone",
+            pistas: [
+                "Tem conexões com o submundo de Gotham, especialmente com bares noturnos.",
+                 "É manco e costuma andar com passos pesados e claudicantes.",
+                 "Gosta de usar apelidos sarcásticos e sempre parece saber mais do que diz."
+            ]
+        }
+    ]
 
     var indiceAtual = 0;
 
@@ -102,7 +127,7 @@
             pistaBox.textContent = pistas[indiceAtual];
             indiceAtual++;
             if (indiceAtual === pistas.length) {
-                suspeitosBox.style.display = "none";
+                suspeitosBox.style.display = "flex";
             }
         } else {
             pistaBox.textContent = "Todas as pistas foram reveladas.";
@@ -117,5 +142,7 @@
             resultado.textContent = "❌ Errou... O verdadeiro vilão era o Charada.";
         }
     }
+
+    pistas[[0].pistas].pistas[0]
 
 </script>
