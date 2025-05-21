@@ -10,7 +10,7 @@
 
     <script src="./js/sessao.js"></script>
 
-    <link rel="stylesheet" href="./css/charada.css">
+    <link rel="stylesheet" href="./css/jogo.css">
     <link rel="icon" href="./assets/imgs/logoBatSite.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
@@ -39,17 +39,22 @@
             </div>
         </div>
         <!--header fim-->
-
-        <div class="charada">
+        <div class="jogo">
             <div class="container">
-                <div class="inicioJogo">
-                    <h2>Quiz: Charada</h2>
-                    <div class="input_e_resultado">
-                        <input type="text" class="input_resposta" placeholder="Sua resposta..." />
-                        <button onclick="checarResposta()">Responder</button>
-                        <p class="resultado"></p>
-                    </div>
+                <div class="titulo">
+                    <h1>Quem é o Vilão?</h1>
                 </div>
+                <div class="pista_box">
+                    <p id="pista">Clique no botão para a primeira pista.</p>
+                    <button onclick="mostrarProximaPista()">Mostrar Pista</button>
+                </div>
+                <div id="suspeitos" class="suspeitos">
+                    <h2>Quem é o culpado?</h2>
+                    <button onclick="verificarResposta('charada')">Charada</button>
+                    <button onclick="verificarResposta('pinguim')">Pinguim</button>
+                    <button onclick="verificarResposta('falcone')">Carmine Falcone</button>
+                </div>
+                <p class="resultado"></p>
             </div>
         </div>
         <div class="footer">
@@ -81,5 +86,36 @@
 
     // Chama a função após um pequeno atraso (2 segundos)
     setTimeout(carregamentoInicial, 1500);
+
+    const pistas = [
+        "Ele costuma deixar enigmas como mensagens.",
+        "Foi visto usando uma máscara estranha.",
+        "Se comunica com vídeos enigmáticos.",
+    ];
+
+    var indiceAtual = 0;
+
+    function mostrarProximaPista() {
+        const pistaBox = document.getElementById("pista");
+        const suspeitosBox = document.getElementById("suspeitos");
+        if (indiceAtual < pistas.length) {
+            pistaBox.textContent = pistas[indiceAtual];
+            indiceAtual++;
+            if (indiceAtual === pistas.length) {
+                suspeitosBox.style.display = "none";
+            }
+        } else {
+            pistaBox.textContent = "Todas as pistas foram reveladas.";
+        }
+    }
+
+    function verificarResposta(suspeito) {
+        const resultado = document.getElementById("resultado");
+        if (suspeito === "charada") {
+            resultado.textContent = "✅ Acertou! O Charada era o culpado.";
+        } else {
+            resultado.textContent = "❌ Errou... O verdadeiro vilão era o Charada.";
+        }
+    }
 
 </script>
