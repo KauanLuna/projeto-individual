@@ -121,33 +121,6 @@
     // Chama a função após um pequeno atraso (2 segundos)
     setTimeout(carregamentoInicial, 1500);
 
-    const casos = [
-        {
-            vilao: "charada",
-            pistas: [
-                "Ele costuma deixar enigmas como mensagens.",
-                "Foi visto usando uma máscara estranha.",
-                "Se comunica com vídeos enigmáticos."
-            ]
-        },
-        {
-            vilao: "pinguim",
-            pistas: [
-                "Tem conexões com o submundo de Gotham, especialmente com bares noturnos.",
-                "É manco e costuma andar com passos pesados e claudicantes.",
-                "Gosta de usar apelidos sarcásticos e sempre parece saber mais do que diz."
-            ]
-        },
-        {
-            vilao: "carmine falcone",
-            pistas: [
-                "Envolvido em esquemas políticos e policiais há décadas.",
-                "Raramente é visto em público — mas sua influência está por toda parte.",
-                "Foi mencionado em um dossiê sobre corrupção na prefeitura."
-            ]
-        }
-    ]
-
     // Sorteia um caso aleatório ao carregar a página
     const casoAtual = casos[Math.floor(Math.random() * casos.length)];
     let indiceAtual = 0;
