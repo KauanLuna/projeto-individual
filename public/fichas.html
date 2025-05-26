@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>BatSite | ❔</title>
+    <title>BatSite | Vilões</title>
 
     <script src="./js/sessao.js"></script>
 
-    <link rel="stylesheet" href="./css/jogo.css">
+    <link rel="stylesheet" href="./css/fichas.css">
     <link rel="icon" href="./assets/imgs/logoBatSite.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
@@ -27,7 +27,7 @@
                     <li>
                         <a href="./index.html">Inicial</a>
                     </li>
-                    <li class="agora"><span class="interrogacao">?</span></li>
+                    <li class="agora"><span class="interrogacao">Fichas</span></li>
                     <li>|</li>
                     <li>
                         <a href="./login.html">Login</a>
@@ -39,46 +39,65 @@
             </div>
         </div>
         <!--header fim-->
-          <h1>Fichas Criminais dos Vilões</h1>
 
-  <!-- Ficha 1 -->
-  <div class="ficha">
-    <h2>Charada</h2>
-    <p><strong>Nome:</strong> Edward Nashton</p>
-    <p><strong>Modus Operandi:</strong> Deixa enigmas e vídeos enigmáticos nas cenas do crime.</p>
-    <p><strong>Local de atuação:</strong> Prefeitura de Gotham, cenas de crime político.</p>
-    <p><strong>Frase:</strong> <em>"Se você é a justiça, por favor, não minta."</em></p>
-    <form action="/favoritar" method="post">
-      <input type="hidden" name="vilao" value="charada">
-      <button type="submit">⭐ Favoritar</button>
-    </form>
-  </div>
+        <div class="conjunto_fichas">
 
-  <!-- Ficha 2 -->
-  <div class="ficha">
-    <h2>Pinguim</h2>
-    <p><strong>Nome:</strong> Oswald Cobblepot</p>
-    <p><strong>Modus Operandi:</strong> Atua em clubes, tráfico e conexões com o submundo.</p>
-    <p><strong>Local de atuação:</strong> Iceberg Lounge</p>
-    <p><strong>Frase:</strong> <em>"Você me parece nervoso, detetive..."</em></p>
-    <form action="/favoritar" method="post">
-      <input type="hidden" name="vilao" value="pinguim">
-      <button type="submit">⭐ Favoritar</button>
-    </form>
-  </div>
+            <h1>Fichas Criminais dos Vilões</h1>
 
-  <!-- Ficha 3 -->
-  <div class="ficha">
-    <h2>Carmine Falcone</h2>
-    <p><strong>Nome:</strong> Carmine Falcone</p>
-    <p><strong>Modus Operandi:</strong> Chefe da máfia, controla política e polícia de Gotham.</p>
-    <p><strong>Local de atuação:</strong> Coberturas e edifícios governamentais.</p>
-    <p><strong>Frase:</strong> <em>"Você acha que tem poder? Eu sou o poder."</em></p>
-    <form action="/favoritar" method="post">
-      <input type="hidden" name="vilao" value="falcone">
-      <button type="submit">⭐ Favoritar</button>
-    </form>
-  </div>
+            <!-- Ficha 1 -->
+            <div class="ficha">
+                <h2>Charada</h2>
+                <div class="informacoes">
+                    <p><strong>Nome:</strong> Edward Nashton</p>
+                    <p><strong>Modus Operandi:</strong> Deixa enigmas e vídeos enigmáticos nas cenas do crime.</p>
+                    <p><strong>Local de atuação:</strong> Prefeitura de Gotham, cenas de crime político.</p>
+                    <p><strong>Frase:</strong> <em>"Se você é a justiça, por favor, não minta."</em></p>
+                </div>
+                <form action="/favoritar" method="post">
+                    <input type="hidden" name="vilao" value="charada">
+                    <button type="submit">⭐ Favoritar</button>
+                </form>
+                <div class="icone_viloes">
+                    <img src="./assets/imgs/charada.jpg">
+                </div>
+            </div>
+
+            <!-- Ficha 2 -->
+            <div class="ficha">
+                <h2>Pinguim</h2>
+                <div class="informacoes">
+                    <p><strong>Nome:</strong> Oswald Cobblepot</p>
+                    <p><strong>Modus Operandi:</strong> Atua em clubes, tráfico e conexões com o submundo.</p>
+                    <p><strong>Local de atuação:</strong> Iceberg Lounge</p>
+                    <p><strong>Frase:</strong> <em>"Você me parece nervoso, detetive..."</em></p>
+                </div>
+                <form action="/favoritar" method="post">
+                    <input type="hidden" name="vilao" value="pinguim">
+                    <button type="submit">⭐ Favoritar</button>
+                </form>
+                <div class="icone_viloes">
+                    <img src="./assets/imgs/charada.jpg">
+                </div>
+            </div>
+
+            <!-- Ficha 3 -->
+            <div class="ficha">
+                <h2>Carmine Falcone</h2>
+                <div class="informacoes">
+                    <p><strong>Nome:</strong> Carmine Falcone</p>
+                    <p><strong>Modus Operandi:</strong> Chefe da máfia, controla política e polícia de Gotham.</p>
+                    <p><strong>Local de atuação:</strong> Coberturas e edifícios governamentais.</p>
+                    <p><strong>Frase:</strong> <em>"Você acha que tem poder? Eu sou o poder."</em></p>
+                </div>
+                <form action="/favoritar" method="post">
+                    <input type="hidden" name="vilao" value="falcone">
+                    <button type="submit">⭐ Favoritar</button>
+                </form>
+                <div class="icone_viloes">
+                    <img src="./assets/imgs/charada.jpg">
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>
