@@ -49,6 +49,11 @@
 </html>
 <script>
 
+    var idUsuario = sessionStorage.getItem("ID_USUARIO");
+    if (idUsuario == null) {
+        alert("Você precisa estar logado para acessar esta página.");
+        window.location.href = "./login.html";
+    }
 
     // Função para ocultar o carregamento e mostrar o conteúdo principal
     function carregamentoInicial() {
@@ -95,6 +100,32 @@
                 });
             }
         });
+    }
+
+    function favoritar() {
+
+        var fk_usuario = sessionStorage.getItem("ID_USUARIO");
+        var fk_vilao = vilao.
+
+            fetch("/viloes/favoritar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    fk_usuario: fk_usuario,
+                    fk_vilao: fk_vilao
+                })
+            }).then(res => {
+                if (res.ok) {
+                    alert("Vilão favoritado com sucesso!");
+                } else {
+                    alert("Erro ao favoritar vilão.");
+                }
+            }).catch(err => {
+                console.error("Erro ao favoritar vilão:", err);
+                alert("Erro ao favoritar vilão.");
+            });
     }
 
 </script>

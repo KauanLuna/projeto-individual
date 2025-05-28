@@ -147,7 +147,7 @@
       nomeVar.length < 1 ||
       emailVar.includes("@") == false ||
       emailVar.includes(".com") == false ||
-      senhaVar.length > 6 ||
+      senhaVar.length < 6 ||
       confirmacaoSenhaVar != senhaVar
     ) {
       cardErro.style.display = "block";

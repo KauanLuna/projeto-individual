@@ -8,4 +8,9 @@ router.get("/listar", function (req, res) {
     viloesController.listar(req, res);
 });
 
+router.post("/favoritar", function (req, res) {
+    // função a ser chamada quando /viloes/favoritar
+    viloesController.favoritar(req, res);
+});
+
 module.exports = router;
