@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
-<body>
+<body onload="listar()">
     <div class="carregamento" id="carregamento"><img src="./assets/imgs/charadaIMG.gif" alt="Logo carregando"></div>
     <div class="conteudoPrincipal" id="conteudoPrincipal">
 
@@ -40,68 +40,15 @@
         </div>
         <!--header fim-->
 
-        <div class="conjunto_fichas">
+        <div class="conjunto_fichas" id="conjunto_fichas">
 
             <h1>Fichas Criminais dos Vilões</h1>
-
-            <!-- Ficha 1 -->
-            <div class="ficha">
-                <h2>Charada</h2>
-                <div class="informacoes">
-                    <p><strong>Nome:</strong> Edward Nashton</p>
-                    <p><strong>Modus Operandi:</strong> Deixa enigmas e vídeos enigmáticos nas cenas do crime.</p>
-                    <p><strong>Local de atuação:</strong> Prefeitura de Gotham, cenas de crime político.</p>
-                    <p><strong>Frase:</strong> <em>"Se você é a justiça, por favor, não minta."</em></p>
-                </div>
-                <form action="/favoritar" method="post">
-                    <input type="hidden" name="vilao" value="charada">
-                    <button type="submit">⭐ Favoritar</button>
-                </form>
-                <div class="icone_viloes">
-                    <img src="./assets/imgs/charada.jpg">
-                </div>
-            </div>
-
-            <!-- Ficha 2 -->
-            <div class="ficha">
-                <h2>Pinguim</h2>
-                <div class="informacoes">
-                    <p><strong>Nome:</strong> Oswald Cobblepot</p>
-                    <p><strong>Modus Operandi:</strong> Atua em clubes, tráfico e conexões com o submundo.</p>
-                    <p><strong>Local de atuação:</strong> Iceberg Lounge</p>
-                    <p><strong>Frase:</strong> <em>"Você me parece nervoso, detetive..."</em></p>
-                </div>
-                <form action="/favoritar" method="post">
-                    <input type="hidden" name="vilao" value="pinguim">
-                    <button type="submit">⭐ Favoritar</button>
-                </form>
-                <div class="icone_viloes">
-                    <img src="./assets/imgs/charada.jpg">
-                </div>
-            </div>
-
-            <!-- Ficha 3 -->
-            <div class="ficha">
-                <h2>Carmine Falcone</h2>
-                <div class="informacoes">
-                    <p><strong>Nome:</strong> Carmine Falcone</p>
-                    <p><strong>Modus Operandi:</strong> Chefe da máfia, controla política e polícia de Gotham.</p>
-                    <p><strong>Local de atuação:</strong> Coberturas e edifícios governamentais.</p>
-                    <p><strong>Frase:</strong> <em>"Você acha que tem poder? Eu sou o poder."</em></p>
-                </div>
-                <form action="/favoritar" method="post">
-                    <input type="hidden" name="vilao" value="falcone">
-                    <button type="submit">⭐ Favoritar</button>
-                </form>
-                <div class="icone_viloes">
-                    <img src="./assets/imgs/charada.jpg">
-                </div>
-            </div>
         </div>
 </body>
 
 </html>
 <script>
+
 
     // Função para ocultar o carregamento e mostrar o conteúdo principal
     function carregamentoInicial() {
@@ -121,32 +68,33 @@
     // Chama a função após um pequeno atraso (2 segundos)
     setTimeout(carregamentoInicial, 1500);
 
-    // Sorteia um caso aleatório ao carregar a página
-    const casoAtual = casos[Math.floor(Math.random() * casos.length)];
-    let indiceAtual = 0;
+    function listar() {
 
-    // Função para mostrar a próxima pista
-    function mostrarProximaPista() {
-        const pistaEl = document.getElementById("pista");
-        if (indiceAtual < casoAtual.pistas.length) {
-            pistaEl.textContent = casoAtual.pistas[indiceAtual];
-            indiceAtual++;
-            if (indiceAtual === casoAtual.pistas.length) {
-                document.getElementById("suspeitos").style.display = "flex";
+        fetch("/viloes/listar").then(res => {
+            if (res.ok) {
+                res.json().then(viloes => {
+                    const conjunto = document.getElementById("conjunto_fichas");
+                    viloes.forEach(vilao => {
+                        const card = document.createElement("div");
+                        card.className = "card-vilao";
+
+                        card.innerHTML = `
+                        <div class="icone_viloes">
+                        <img src="../assets/imgs/${vilao.foto}" alt="${vilao.nome}">
+                        </div>
+                        <h2>${vilao.apelido}</h2>
+                        <p><strong>Nome: </strong>${vilao.nome}</p>
+                        <p><strong>Modus Operandi: </strong>${vilao.modus_operandi}</p>
+                        <p><strong>Local de Atuação: </strong>${vilao.local_atuacao}</p>
+                        <p><strong>Frase: </strong>${vilao.frase}</p>
+                        <button onclick="favoritarVilao(${vilao.id})">⭐ Favoritar</button>
+                    `;
+
+                        conjunto.appendChild(card);
+                    });
+                });
             }
-        } else {
-            pistaEl.textContent = "Todas as pistas foram reveladas.";
-        }
-    }
-
-    // Função para verificar se o jogador acertou
-    function verificarResposta(suspeito) {
-        const resultado = document.getElementById("resultado");
-        if (suspeito === casoAtual.vilao) {
-            resultado.textContent = "✅ Acertou! Você descobriu o verdadeiro vilão.";
-        } else {
-            resultado.textContent = `❌ Errou... O verdadeiro vilão era ${casoAtual.vilao}.`;
-        }
+        });
     }
 
 </script>
