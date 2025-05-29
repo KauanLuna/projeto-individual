@@ -10,11 +10,12 @@ function listar(req, res) {
 
 function favoritar(req, res) {
 
-    var fk_usuario = sessionStorage.ID_USUARIO;
+    var fk_usuario = req.body.fk_usuario;
     var fk_vilao = req.body.fk_vilao;
+
     console.log("ID do usuário: ", fk_usuario);
 
-    if (fk_usuario != undefined){
+    if (fk_usuario == undefined){
         res.status(400).send("O usuário precisa estar logado para favoritar!");
     }
     if (fk_vilao == undefined) {

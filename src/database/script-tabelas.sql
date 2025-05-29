@@ -9,6 +9,9 @@ CREATE TABLE usuario (
     senha VARCHAR(25) NOT NULL
 );
 
+INSERT INTO usuario(nome, email, senha) VALUES
+	('Kauan', 'k@.com', '1');
+
 CREATE TABLE vilao (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     apelido VARCHAR(45) NOT NULL,
@@ -26,6 +29,7 @@ CREATE TABLE favoritos (
 	fk_vilao INT,
     CONSTRAINT fkVilao FOREIGN KEY (fk_vilao)
 		REFERENCES vilao(id),
+	CONSTRAINT pkComposta PRIMARY KEY (fk_usuario, fk_vilao),
 	data_favorito DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -33,3 +37,5 @@ INSERT INTO vilao(apelido, nome, modus_operandi, local_atuacao, frase, foto) VAL
 ('Charada', 'Edward Nashton', 'Deixa enigmas e mensagens enigmáticas nas cenas do crime.', 'Prefeitura de Gotham, cenas de crime político.', 'Se você é a justiça, por favor, não minta.', 'charada.jpg'),
 ('Pinguim', 'Oswald Cobblepot', 'Envolvido com o submundo de Gotham, dono do Iceberg Lounge.', 'Iceberg Lounge', 'Você me parece nervoso, detetive...', 'pinguim.jpg'),
 ('Carmine Falcone', 'Carmine Falcone', 'Chefão da máfia que controla Gotham por trás dos panos.', 'Coberturas e edifícios governamentais.', 'Você acha que tem poder? Eu sou o poder.', 'falcone.jpg');
+
+SELECT * FROM favoritos;

@@ -26,16 +26,19 @@
           <li class="agora">
             <a href="#">Inicial</a>
           </li>
-          <li class="interrogacao">
-            <a href="fichas.html">?</a>
+          <li class="a_fichas">
+            <a id="a_fichas" href="fichas.html">Fichas</a>
           </li>
           <li>|</li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
+          <span class="cadastro" id="cadastro">
+            <li>
+              <a href="login.html">Login</a>
+            </li>
+            <li>
+              <a href="cadastro.html">Cadastro</a>
+            </li>
+          </span>
+          <span id="icon_logout" class="icon_logout"><img src="./assets/imgs/logoutICON.png"></span>
         </ul>
       </div>
     </div>
@@ -95,5 +98,25 @@
 
   // Chama a função após um pequeno atraso (1.5 segundos)
   setTimeout(carregamentoInicial, 1500);
+
+  const cadastro = document.getElementById("cadastro");
+
+  const aFichas = document.getElementById("a_fichas");
+
+  const iconLogout = document.getElementById("icon_logout");
+  
+  iconLogout.addEventListener("click", () => {
+    sessionStorage.clear();
+    window.location.href = "index.html";
+  });
+
+  aFichas.style.display = "none";
+  cadastro.style.display = "flex";
+
+  if (sessionStorage.getItem("NOME_USUARIO") != null) {
+    cadastro.innerHTML = `<li><a href="perfil.html">Olá, ${sessionStorage.getItem("NOME_USUARIO")}</a></li>`;
+    aFichas.style.display = "flex";
+    iconLogout.style.display = "flex";
+  }
 
 </script>

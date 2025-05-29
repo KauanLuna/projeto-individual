@@ -55,6 +55,12 @@
         window.location.href = "./login.html";
     }
 
+    if(sessionStorage.getItem("NOME_USUARIO") != null) {
+        document.querySelector(".header .navbar li.agora").innerHTML = sessionStorage.getItem("NOME_USUARIO");
+    } else {
+        document.querySelector(".header .navbar li.agora").innerHTML = "Usuário";
+    }
+
     // Função para ocultar o carregamento e mostrar o conteúdo principal
     function carregamentoInicial() {
         const carregamento = document.getElementById('carregamento');
@@ -92,7 +98,7 @@
                         <p><strong>Modus Operandi: </strong>${vilao.modus_operandi}</p>
                         <p><strong>Local de Atuação: </strong>${vilao.local_atuacao}</p>
                         <p><strong>Frase: </strong>${vilao.frase}</p>
-                        <button onclick="favoritarVilao(${vilao.id})">⭐ Favoritar</button>
+                        <button onclick="favoritar(${vilao.id})">⭐ Favoritar</button>
                     `;
 
                         conjunto.appendChild(card);
@@ -102,10 +108,9 @@
         });
     }
 
-    function favoritar() {
+    function favoritar(fk_vilao) {
 
-        var fk_usuario = sessionStorage.getItem("ID_USUARIO");
-        var fk_vilao = vilao.
+        var fk_usuario = Number(sessionStorage.getItem("ID_USUARIO"));
 
             fetch("/viloes/favoritar", {
                 method: "POST",
@@ -122,8 +127,8 @@
                 } else {
                     alert("Erro ao favoritar vilão.");
                 }
-            }).catch(err => {
-                console.error("Erro ao favoritar vilão:", err);
+            }).catch(erro => {
+                console.error("Erro ao favoritar vilão:", erro);
                 alert("Erro ao favoritar vilão.");
             });
     }
