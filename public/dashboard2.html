@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batsite | Painel de controle</title>
+    <script src="./js/sessao.js"></script>
+    <link rel="stylesheet" href="./css/dashboards.css">
+    <link rel="stylesheet" href="./css/pontas.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="icon" href="./assets/icon/logoBatSite.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="../js/dashboard.js"></script> -->
+</head>
+
+<body onload="carregamentoInicial(), obterDadosDashboard()">
+    <div class="carregamento" id="carregamento"><img src="./assets/imgs/logoBatman.gif" alt="Logo carregando"></div>
+    <div class="conteudoPrincipal" id="conteudoPrincipal">
+
+        <!--Header-->
+        <div class="header">
+            <div class="container">
+                <div class="logo"><img src="./assets/imgs/logoBatSite.png"></div>
+                <ul class="navbar">
+                    <li>
+                        <a href="index.html">Inicial</a>
+                    </li>
+                    <li class="a_fichas">
+                        <a id="a_fichas" href="fichas.html">Fichas</a>
+                    </li>
+                    <li>|</li>
+                    <span class="cadastro" id="cadastro">
+                        <li class="agora">
+                            <a href="#">Login</a>
+                        </li>
+                        <li>
+                            <a href="cadastro.html">Cadastro</a>
+                        </li>
+                    </span>
+                    <span id="icon_logout" class="icon_logout"><img src="./assets/imgs/logoutICON.png"></span>
+                </ul>
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <canvas id="myChart"></canvas>
+        </div>
+
+    </div>
+</body>
+
+</html>
+<script>
+
+    function carregamentoInicial() {
+        const carregamento = document.getElementById('carregamento');
+        const conteudoPrincipal = document.getElementById('conteudoPrincipal');
+
+        conteudoPrincipal.style.display = 'block';
+
+        carregamento.classList.add('sumir');
+
+        setTimeout(() => {
+            carregamento.style.display = 'none';
+            conteudoPrincipal.classList.add('aparecer');
+        }, 1000); // 1 segundos de atraso
+    }
+
+    // Chama a função após um pequeno atraso (2 segundos)
+    setTimeout(carregamentoInicial, 1500);
+
+    function obterDadosDashboard() {
+        fetch('/dashboard/obterDadosDashboard').then(response => {
+            if (response.ok) {
+                response.json().then(resultado => {
+                    console.log(`resultado recebidos: ${JSON.stringify(resultado)}`);
+                    resultado.reverse();
+                    plotarGrafico(resultado);
+                });
+            } else {
+                console.error('Erro ao obter dados do dashboard:', response.statusText);
+            }
+        }).catch(error => {
+            console.error('Erro na requisição:', error);
+        });
+    }
+    function plotarGrafico(resultado) {
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Usuários', 'Viloes', 'Fichas'],
+                datasets: [{
+                    label: 'Quantidade',
+                    data: [resultado.qtd_viloes_favoritados, resultado.viloes, resultado.fichas],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+</script>

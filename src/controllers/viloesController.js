@@ -21,7 +21,7 @@ function favoritar(req, res) {
     if (fk_vilao == undefined) {
         res.status(400).send("O ID do vilão não foi definido!");
     }
-    viloesModel.favoritar(fk_usuario, fk_vilao).then(function (resultado) {
+    viloesModel.favoritar(fk_vilao, fk_usuario).then(function (resultado) {
         res.status(200).json("Personagem favoritado com sucesso! " + resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
@@ -29,7 +29,7 @@ function favoritar(req, res) {
 }
 
 function listarFavoritos(req, res) {
-    var fk_usuario = req.body.fk_usuario;
+    var fk_usuario = req.params.fk_usuario;
 
     viloesModel.listarFavoritos(fk_usuario)
         .then(function (resultado) {
@@ -43,9 +43,26 @@ function listarFavoritos(req, res) {
         });
 }
 
+function desfavoritar () {
+    var fk_vilao = req.body.fk_vilao;
+    var fk_usuario = req.body.fk_usuario;
+
+    viloesModel.desfavoritar(fk_vilao, fk_usuario)
+        .then(function (resultado) {
+            if (resultado.affectedRows > 0) {
+                res.status(200).json("Vilão desfavoritado com sucesso!");
+            } else {
+                res.status(404).send("Vilão não encontrado nos favoritos.");
+            }
+        }).catch(function (erro) {
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 
 module.exports = {
     listar,
     favoritar,
-    listarFavoritos
+    listarFavoritos,
+    desfavoritar
 }

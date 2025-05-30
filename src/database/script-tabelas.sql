@@ -10,7 +10,7 @@ CREATE TABLE usuario (
 );
 
 INSERT INTO usuario(nome, email, senha) VALUES
-	('Kauan', 'k@.com', '1');
+	('Kauan', 'k@.com', 'admin');
 
 CREATE TABLE vilao (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -40,17 +40,17 @@ INSERT INTO vilao(apelido, nome, modus_operandi, local_atuacao, frase, foto) VAL
 
 SELECT * FROM favoritos;
 
-SELECT * FROM usuario;
+SELECT * FROM usuario; 
 
 CREATE VIEW favoritosUsuarios AS
 SELECT
-	v.nome Nome,
-    v.apelido Apelido,
-    v.modus_operandi ModusOperandi,
-    v.local_atuacao LocalAtuacao,
-    v.frase Frase,
-    v.foto Foto,
-    f.fk_usuario fk_usuario
+	v.nome,
+    v.apelido,
+    v.modus_operandi,
+    v.local_atuacao,
+    v.frase,
+    v.foto,
+    f.fk_usuario
 FROM 
     usuario u
 JOIN 
@@ -68,6 +68,31 @@ SELECT
 FROM 
 	favoritosUsuarios
 WHERE
-	fk_usuario = 1
+	fk_usuario = 3
 ORDER BY 
 	Nome DESC;
+    
+CREATE VIEW dashboard AS
+SELECT
+    u.nome nome_usuario,
+    f.fk_vilao,
+    f.fk_usuario,
+    v.foto,
+    v.frase,
+    v.apelido,
+    v.local_atuacao,
+    v.modus_operandi,
+    v.nome nome_vilao
+FROM
+	usuario u
+JOIN
+	favoritos f
+ON
+	f.fk_usuario = u.id
+JOIN
+	vilao V
+ON
+	f.fk_vilao = v.id;
+
+SELECT * FROM dashboard;
+

@@ -59,12 +59,12 @@
                     </div>
                     <div class="formulario">
                         <div class="campo">
-                            <span>Email:</span>
-                            <input id="email_input" type="text" placeholder="Digite o seu nome de usuário">
+                            <span id="email">Email:</span>
+                            <input onfocus="subir()" id="email_input" type="text" placeholder="Digite o seu nome de usuário">
                         </div>
                         <div class="campo">
-                            <span>Senha:</span>
-                            <input id="senha_input" type="password" placeholder="******">
+                            <span id="senha">Senha:</span>
+                            <input onfocus="subir()" id="senha_input" type="password" placeholder="******">
                         </div>
                         <button class="botao" onclick="entrar()">Entrar</button>
                     </div>
@@ -95,6 +95,16 @@
 </html>
 
 <script>
+
+// function subir() {
+//         const email = document.getElementById("email");
+//         const senha = document.getElementById("senha");
+
+//         email.style.transform = "translateY(-20px)";
+//         senha.style.transform = "translateY(-20px)";
+//         email.style.transition = "transform 0.3s ease";
+//         senha.style.transition = "transform 0.3s ease";
+//     }
 
     // Função para ocultar o carregamento e mostrar o conteúdo principal
     function carregamentoInicial() {
@@ -154,6 +164,9 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.SENHA_USUARIO = json.senha;
+                    console.log("EMAIL_USUARIO: " + sessionStorage.EMAIL_USUARIO);
+                    console.log("ID_USUARIO: " + sessionStorage.ID_USUARIO);
 
                     if (json.email == "k@.com" && json.senha == "admin") {
                         var admin = true;
@@ -168,7 +181,7 @@
 
                         if (admin) {
                             console.log("O usuário é um administrador!");
-                            window.location = "./dashboard.html";
+                            window.location = "./dashboard2.html";
                         } else {
                             console.log("O usuário não é um administrador!");
                             window.location = "./index.html";

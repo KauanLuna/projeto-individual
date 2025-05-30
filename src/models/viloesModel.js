@@ -24,9 +24,18 @@ function listarFavoritos(fk_usuario) {
     return database.executar(instrucao);
 }
 
+function desfavoritar(fk_vilao, fk_usuario) {
+    var instrucao = `
+        DELETE FROM favoritos WHERE fk_vilao = ${fk_vilao} AND fk_usuario = ${fk_usuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 
 module.exports = {
     listar,
     favoritar,
-    listarFavoritos
+    listarFavoritos,
+    desfavoritar
 }

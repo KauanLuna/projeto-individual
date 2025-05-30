@@ -18,5 +18,10 @@ router.get("/favoritos/:fk_usuario", function (req, res) {
     viloesController.listarFavoritos(req, res);
 });
 
+router.post("/desfavoritar", function (req, res) {
+    // função a ser chamada quando /viloes/desfavoritar
+    viloesController.desfavoritar(req, res);
+});
+
 
 module.exports = router;

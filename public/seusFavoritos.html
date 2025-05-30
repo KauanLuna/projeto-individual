@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>BatSite | Vilões</title>
+    <title>Seus Favoritos</title>
 
     <script src="./js/sessao.js"></script>
 
@@ -16,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
-<body onload="listar()">
+<body onload="listarFavoritos()">
     <div class="carregamento" id="carregamento"><img src="./assets/imgs/charadaIMG.gif" alt="Logo carregando"></div>
     <div class="conteudoPrincipal" id="conteudoPrincipal">
 
@@ -28,11 +26,11 @@
                     <li>
                         <a href="./index.html">Inicial</a>
                     </li>
-                    <li class="a_fichas agora">
+                    <li class="a_fichas">
                         <a id="a_fichas" href="#">Fichas</a>
                     </li>
-                    <li>
-                        <a href="seusFavoritos.html">Seus Favoritos</a>
+                    <li class="agora">
+                        <a href="#">Suas Fichas</a>
                     </li>
                     <li>|</li>
                     <span class="cadastro" id="cadastro">
@@ -50,8 +48,7 @@
         <!--header fim-->
 
         <div class="conjunto_fichas" id="conjunto_fichas">
-
-            <h1>Fichas Criminais dos Vilões</h1>
+            <h1>Seus Favoritos</h1>
         </div>
 
         <div class="footer">
@@ -60,10 +57,34 @@
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
+
 <script>
+
+    const cadastro = document.getElementById("cadastro");
+
+    const aFichas = document.getElementById("a_fichas");
+
+    const iconLogout = document.getElementById("icon_logout");
+
+    iconLogout.addEventListener("click", () => {
+        sessionStorage.clear();
+        window.location.href = "index.html";
+    });
+    
+    aFichas.style.display = "none";
+    cadastro.style.display = "flex";
+    iconLogout.style.display = "none";
+    
+    if (sessionStorage.getItem("NOME_USUARIO") != null) {
+        cadastro.innerHTML = `<li><a href="perfil.html">Olá, ${sessionStorage.getItem("NOME_USUARIO")}</a></li>`;
+        cadastro.style.justifyContent = "center";
+        aFichas.style.display = "block";
+        iconLogout.style.display = "flex";
+    }
 
     // Função para ocultar o carregamento e mostrar o conteúdo principal
     function carregamentoInicial() {
@@ -83,81 +104,57 @@
     // Chama a função após um pequeno atraso (2 segundos)
     setTimeout(carregamentoInicial, 1500);
 
-    function listar() {
+    function listarFavoritos() {
+        var fk_usuario = Number(sessionStorage.getItem("ID_USUARIO"));
 
-        fetch("/viloes/listar").then(res => {
+        fetch(`/viloes/favoritos/${fk_usuario}`).then(res => {
             if (res.ok) {
-                res.json().then(viloes => {
-                    const conjunto = document.getElementById("conjunto_fichas");
-                    viloes.forEach(vilao => {
+                return res.json().then(favoritos => {
+                    var conjunto = document.getElementById("conjunto_fichas");
+
+                    for (var i = 0; i < favoritos.length; i++) {
+                        const vilao = favoritos[i];
                         const card = document.createElement("div");
                         card.className = "card-vilao";
 
                         card.innerHTML = `
                         <div class="icone_viloes">
-                        <img src="../assets/imgs/${vilao.foto}" alt="${vilao.nome}">
+                            <img src="../assets/imgs/${vilao.foto}" alt="${vilao.nome}">
                         </div>
                         <h2>${vilao.apelido}</h2>
                         <p><strong>Nome: </strong>${vilao.nome}</p>
                         <p><strong>Modus Operandi: </strong>${vilao.modus_operandi}</p>
                         <p><strong>Local de Atuação: </strong>${vilao.local_atuacao}</p>
                         <p><strong>Frase: </strong>${vilao.frase}</p>
-                        <button onclick="favoritar(${vilao.id})">⭐ Favoritar</button>
-                    `;
-
+                        <button onclick="desfavoritar(${vilao.id})">⭐ Desfavoritar</button>
+                        `;
                         conjunto.appendChild(card);
-                    });
+                    }
+
                 });
             }
+        }).catch(err => {
+            console.error("Erro no fetch dos favoritos:", err);
         });
     }
+    function removerFavorito(idVilao) {
+        var idUsuario = sessionStorage.ID_USUARIO;
 
-    function favoritar(fk_vilao) {
-
-        var fk_usuario = Number(sessionStorage.getItem("ID_USUARIO"));
-
-        fetch("/viloes/favoritar", {
-            method: "POST",
+        fetch("/viloes/desfavoritar", {
+            method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                fk_usuario: fk_usuario,
-                fk_vilao: fk_vilao
+                fk_usuario: idUsuario,
+                fk_vilao: idVilao
             })
         }).then(res => {
             if (res.ok) {
-                alert("Vilão favoritado com sucesso!");
-            } else {
-                alert("Erro ao favoritar vilão.");
+                alert("Vilão removido dos favoritos!");
+                listarFavoritos(); // Atualiza a lista
             }
-        }).catch(erro => {
-            console.error("Erro ao favoritar vilão:", erro);
-            alert("Erro ao favoritar vilão.");
         });
-    }
-
-    const cadastro = document.getElementById("cadastro");
-
-    const aFichas = document.getElementById("a_fichas");
-
-    const iconLogout = document.getElementById("icon_logout");
-
-    iconLogout.addEventListener("click", () => {
-        sessionStorage.clear();
-        window.location.href = "index.html";
-    });
-
-    aFichas.style.display = "none";
-    cadastro.style.display = "flex";
-    iconLogout.style.display = "none";
-
-    if (sessionStorage.getItem("NOME_USUARIO") != null) {
-        cadastro.innerHTML = `<li><a href="perfil.html">Olá, ${sessionStorage.getItem("NOME_USUARIO")}</a></li>`;
-        cadastro.style.justifyContent = "center";
-        aFichas.style.display = "block";
-        iconLogout.style.display = "flex";
-
     }
 
 

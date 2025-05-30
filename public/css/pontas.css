@@ -4,6 +4,10 @@
   height: var(--tamanho-header);
   border-bottom: 1px solid var(--vermelho);
   box-shadow: 0px 3px 30px var(--vermelho);
+  background-color: black;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .header .container {
@@ -40,11 +44,11 @@
   color: var(--vermelho);
 }
 
-.navbar {
-  width: 300px;
+.header .container .navbar {
+  width: fit-content;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -52,9 +56,14 @@
   font-size: 16px;
 }
 
+.navbar li {
+  margin-right: 10px;
+}
+
 .navbar .a_fichas li {
   align-items: center;
   justify-content: center;
+  margin-right: 10px;
 }
 
 .navbar .a_fichas a {
@@ -76,7 +85,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 130px;
+  width: fit-content;
   height: fit-content;
 }
 
