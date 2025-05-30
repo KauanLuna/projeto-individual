@@ -39,3 +39,35 @@ INSERT INTO vilao(apelido, nome, modus_operandi, local_atuacao, frase, foto) VAL
 ('Carmine Falcone', 'Carmine Falcone', 'Chefão da máfia que controla Gotham por trás dos panos.', 'Coberturas e edifícios governamentais.', 'Você acha que tem poder? Eu sou o poder.', 'falcone.jpg');
 
 SELECT * FROM favoritos;
+
+SELECT * FROM usuario;
+
+CREATE VIEW favoritosUsuarios AS
+SELECT
+	v.nome Nome,
+    v.apelido Apelido,
+    v.modus_operandi ModusOperandi,
+    v.local_atuacao LocalAtuacao,
+    v.frase Frase,
+    v.foto Foto,
+    f.fk_usuario fk_usuario
+FROM 
+    usuario u
+JOIN 
+	favoritos f
+ON
+	f.fk_usuario = u.id
+JOIN
+	vilao v
+ON
+	v.id = f.fk_vilao;
+    
+    
+SELECT 
+	* 
+FROM 
+	favoritosUsuarios
+WHERE
+	fk_usuario = 1
+ORDER BY 
+	Nome DESC;

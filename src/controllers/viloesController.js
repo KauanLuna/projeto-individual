@@ -28,7 +28,24 @@ function favoritar(req, res) {
     })
 }
 
+function listarFavoritos(req, res) {
+    var fk_usuario = req.body.fk_usuario;
+
+    viloesModel.listarFavoritos(fk_usuario)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum favorito encontrado!");
+            }
+        }).catch(function (erro) {
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+
 module.exports = {
     listar,
-    favoritar
+    favoritar,
+    listarFavoritos
 }

@@ -12,6 +12,7 @@ body {
   padding: 0;
   font-family: var(--font);
   background: var(--preto);
+  user-select: none;
 }
 
 :root {
@@ -60,93 +61,6 @@ body {
   display: flex;
   width: 80%;
   margin: auto;
-}
-
-/*Barra de navegação*/
-
-.header {
-  height: var(--tamanho-header);
-  border-bottom: 1px solid var(--vermelho);
-  box-shadow: 0px 3px 30px var(--vermelho);
-}
-
-.header .container {
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-}
-
-.header a {
-  text-decoration: none;
-  color: var(--branco);
-  transition: transform 0.6s ease;
-}
-
-.header a:hover {
-  color: var(--vermelho);
-  transition: transform 0.6s ease;
-}
-
-.header li {
-  transition: transform 0.6s ease;
-  cursor: pointer;
-}
-
-.header li:hover {
-  transform: scale(1.1);
-  text-shadow: 0 0 5px var(--vermelho);
-  color: var(--vermelho);
-}
-
-.agora a {
-  font-weight: 800;
-  padding-bottom: 5px;
-  border-bottom: 2px solid var(--vermelho);
-  color: var(--vermelho);
-}
-
-.navbar {
-  width: 20%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  list-style: none;
-  color: var(--branco);
-  font-size: 16px;
-}
-
-.agora .interrogacao span {
-  color: var(--branco);
-  transition: all 0.5s ease;
-}
-
-.agora .interrogacao {
-  color: var(--branco);
-  transition: all 0.6s ease;
-}
-
-.agora .interrogacao span:hover {
-  text-shadow: 0 0 10px var(--vermelho);
-  color: var(--vermelho);
-  transition: all 0.6s ease;
-  transform: scale(1.1);
-}
-
-.agora .interrogacao:hover {
-  text-shadow: 0 0 10px var(--vermelho);
-  color: var(--vermelho);
-  transition: all 0.6s ease;
-  transform: scale(1.1);
-}
-
-.logo img {
-  width: 100px;
-  height: max-content;
-}
-
-.logo {
-  width: 100px;
-  height: max-content;
 }
 
 /*Tela do Jogo*/
