@@ -22,7 +22,18 @@ function cadastrar(nome, email, senha) {
     return database.executar(instrucaoSql);
 }
 
+function obterTotalUsuarios() {
+    console.log("ACESSEI O USUARIO MODEL");
+
+    var instrucao = `
+        SELECT COUNT(*) as total_usuarios FROM usuario;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    obterTotalUsuarios
 };

@@ -5,94 +5,161 @@ USE batman;
 CREATE TABLE usuario (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(30) NOT NULL,
-    email VARCHAR(45) NOT NULL,
+    email VARCHAR(45) NOT NULL UNIQUE,
     senha VARCHAR(25) NOT NULL
 );
 
 INSERT INTO usuario(nome, email, senha) VALUES
 	('Kauan', 'k@.com', 'admin');
+    
+INSERT INTO usuario(nome, email, senha) VALUES
+	('B', 'b@.com', '1'),
+	('B', 'c@.com', '1'),
+	('B', 'd@.com', '1'),
+	('B', 'e@.com', '1'),
+	('B', 'f@.com', '1'),
+	('B', 'g@.com', '1'),
+	('B', 'j@.com', '1');
 
-CREATE TABLE vilao (
+CREATE TABLE personagem (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     apelido VARCHAR(45) NOT NULL,
 	nome VARCHAR(100) NOT NULL,
     modus_operandi VARCHAR(100) NOT NULL,
     local_atuacao VARCHAR(60) NOT NULL,
     frase VARCHAR(45) NOT NULL,
-    foto VARCHAR(20) NOT NULL
+    foto VARCHAR(20) NOT NULL,
+    tipo VARCHAR(30) NOT NULL,
+    CONSTRAINT chkTIPO CHECK (tipo in('Vilão', 'Heroi'))
 );
 
 CREATE TABLE favoritos (
 	fk_usuario INT,
     CONSTRAINT fkUsuario FOREIGN KEY (fk_usuario)
 		REFERENCES usuario(id),
-	fk_vilao INT,
-    CONSTRAINT fkVilao FOREIGN KEY (fk_vilao)
-		REFERENCES vilao(id),
-	CONSTRAINT pkComposta PRIMARY KEY (fk_usuario, fk_vilao),
+	fk_personagem INT,
+    CONSTRAINT fkVilao FOREIGN KEY (fk_personagem)
+		REFERENCES personagem(id),
+	CONSTRAINT pkComposta PRIMARY KEY (fk_usuario, fk_personagem),
 	data_favorito DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO vilao(apelido, nome, modus_operandi, local_atuacao, frase, foto) VALUES
-('Charada', 'Edward Nashton', 'Deixa enigmas e mensagens enigmáticas nas cenas do crime.', 'Prefeitura de Gotham, cenas de crime político.', 'Se você é a justiça, por favor, não minta.', 'charada.jpg'),
-('Pinguim', 'Oswald Cobblepot', 'Envolvido com o submundo de Gotham, dono do Iceberg Lounge.', 'Iceberg Lounge', 'Você me parece nervoso, detetive...', 'pinguim.jpg'),
-('Carmine Falcone', 'Carmine Falcone', 'Chefão da máfia que controla Gotham por trás dos panos.', 'Coberturas e edifícios governamentais.', 'Você acha que tem poder? Eu sou o poder.', 'falcone.jpg');
+INSERT INTO personagem (apelido, nome, modus_operandi, local_atuacao, frase, foto, tipo) VALUES
+('Batman', 'Bruce Wayne', 'Combate ao crime com inteligência e força bruta', 'Gotham City', 'Eu sou a vingança.', 'batman.jpg', 'Heroi'),
+('Charada', 'Edward Nashton', 'Jogos mentais e assassinatos enigmáticos', 'Gotham City', 'Você é tão inteligente quanto pensa que é?', 'charada.jpg', 'Vilão'),
+('Pinguim', 'Oswald Cobblepot', 'Manipulação e controle do submundo do crime', 'Iceberg Lounge, Gotham City', 'Você sabe quem eu sou?!', 'pinguim.jpg', 'Vilão'),
+('Carmine Falcone', 'Carmine Falcone', 'Corrupção, extorsão e poder político', 'Gotham City', 'A cidade me pertence.', 'falcone.jpg', 'Vilão'),
+('Mulher-Gato', 'Selina Kyle', 'Furtos precisos e justiça pessoal', 'Gotham City', 'Eu cuido de mim mesma.', 'mulhergato.jpg', 'Heroi'),
+('Comissário Gordon', 'James Gordon', 'Investigação policial e parceria com Batman', 'Departamento de Polícia de Gotham', 'Confiamos um no outro.', 'gordon.jpg', 'Heroi');
+
+
+INSERT INTO favoritos(fk_usuario, fk_personagem) VALUES
+	(1, 2),
+	(2, 3),
+	(3, 2),
+	(4, 2),
+	(5, 2),
+	(6, 2),
+	(7, 2),
+	(7, 1),
+    (1, 1),
+	(2, 4),
+	(3, 1),
+	(4, 6),
+	(5, 6),
+	(6, 5),
+	(7, 5);
+    
+    
 
 SELECT * FROM favoritos;
 
 SELECT * FROM usuario; 
-
-CREATE VIEW favoritosUsuarios AS
+    
+CREATE OR REPLACE VIEW favoritosUsuarios AS
 SELECT
-	v.nome,
-    v.apelido,
-    v.modus_operandi,
-    v.local_atuacao,
-    v.frase,
-    v.foto,
-    f.fk_usuario
-FROM 
+	p.nome,
+    p.apelido,
+    p.modus_operandi,
+    p.local_atuacao,
+    p.frase,
+    p.foto,
+    f.fk_usuario,
+    f.fk_personagem
+FROM
     usuario u
 JOIN 
 	favoritos f
 ON
 	f.fk_usuario = u.id
 JOIN
-	vilao v
+	personagem p
 ON
-	v.id = f.fk_vilao;
-    
+	p.id = f.fk_personagem;
     
 SELECT 
 	* 
 FROM 
 	favoritosUsuarios
 WHERE
-	fk_usuario = 3
+	fk_usuario = 1
 ORDER BY 
 	Nome DESC;
     
-CREATE VIEW dashboard AS
+CREATE OR REPLACE VIEW dashboard AS
 SELECT
-    u.nome nome_usuario,
-    f.fk_vilao,
-    f.fk_usuario,
-    v.foto,
-    v.frase,
-    v.apelido,
-    v.local_atuacao,
-    v.modus_operandi,
-    v.nome nome_vilao
+    f.fk_personagem,
+    p.nome,
+    p.apelido,
+    COUNT(f.fk_personagem) AS total_favoritos_personagens,
+    count(*) as total_favoritos
 FROM
-	usuario u
+    favoritos f
 JOIN
-	favoritos f
-ON
-	f.fk_usuario = u.id
-JOIN
-	vilao V
-ON
-	f.fk_vilao = v.id;
+    personagem p ON f.fk_personagem = p.id
+GROUP BY
+    f.fk_personagem
+ORDER BY
+	total_favoritos desc;
 
-SELECT * FROM dashboard;
+
+SELECT
+	* 
+FROM
+	dashboard;
+
+DELETE FROM favoritos WHERE fk_vilao = 2 AND fk_usuario = 1;
+
+
+CREATE VIEW porcentagemTipos as
+SELECT p.tipo, COUNT(*) AS quantidade 
+FROM favoritos f
+JOIN personagem p ON p.id = f.fk_personagem
+GROUP BY tipo;
+
+
+SELECT * FROM porcentagemTipos;
+
+CREATE OR REPLACE VIEW nomeMaisFavoritado as
+SELECT
+	p.nome,
+    p.apelido,
+    count(f.fk_personagem) qtdFavoritados
+FROM
+	favoritos f
+JOIN
+	personagem p 
+ON 
+	p.id = f.fk_personagem
+GROUP BY
+	p.apelido, p.nome
+HAVING 
+	max(qtdFavoritados);
+    
+SELECT * FROM nomeMaisFavoritado;
+
+
+    
+    
+
 

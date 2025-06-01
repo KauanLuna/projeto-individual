@@ -70,7 +70,25 @@ function cadastrar(req, res) {
     }
 }
 
+function obterTotalUsuarios(req, res) {
+    console.log("Acessando o usuarioController");
+
+    usuarioModel.obterTotalUsuarios()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum dado encontrado!");
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao obter total de usuários:", erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    obterTotalUsuarios
 }

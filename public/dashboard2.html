@@ -7,18 +7,18 @@
     <title>Batsite | Painel de controle</title>
     <script src="./js/sessao.js"></script>
     <link rel="stylesheet" href="./css/dashboards.css">
-    <link rel="stylesheet" href="./css/pontas.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="icon" href="./assets/icon/logoBatSite.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- <script src="../js/dashboard.js"></script> -->
+    <script src="../js/dashboard.js"></script>
 </head>
 
-<body onload="carregamentoInicial(), obterDadosDashboard()">
+<body
+    onload="carregamentoInicial(), obterTotalUsuarios(), obterTotalFavoritos(), obterPorcentagemTipos(), obterTotalFavoritosTotais(), obterNomeMaisFavoritado()">
     <div class="carregamento" id="carregamento"><img src="./assets/imgs/logoBatman.gif" alt="Logo carregando"></div>
     <div class="conteudoPrincipal" id="conteudoPrincipal">
 
-        <!--Header-->
+        <!-- Header
         <div class="header">
             <div class="container">
                 <div class="logo"><img src="./assets/imgs/logoBatSite.png"></div>
@@ -41,79 +41,55 @@
                     <span id="icon_logout" class="icon_logout"><img src="./assets/imgs/logoutICON.png"></span>
                 </ul>
             </div>
+        </div> -->
+
+        <div class="menu_lateral">
+            <img class="logo" src="./assets/imgs/logoBatSite.png" alt="Logo do site">
+            <ul class="menu">
+                <li>
+                    <a>Bem vindo, BatAdministrador!</a>
+                </li>
+                <li>
+                    <a href="index.html">Página Inicial</a>
+                </li>
+                <li>
+                    <a href="fichas.html">Fichas</a>
+                </li>
+                <li>
+                    <a href="seusFavoritos.html">Seus Favoritos</a>
+                </li>
+                <li>
+                    <img src="./assets/imgs/logoutICON.png" alt="Ícone de logout" class="icon_logout" id="icon_logout"
+                        onclick="logout()">
+                </li>
+            </ul>
         </div>
 
-        <div class="dashboard">
-            <canvas id="myChart"></canvas>
+        <div class="painel">
+            <div class="KPIS">
+                <div class="kpi_total_favoritos">
+                    <h2>Total de Favoritos</h2>
+                    <p id="totalFavoritos">0</p>
+                </div>
+                <div class="kpi_nome_favoritado">
+                    <h2>Personagem mais Favoritado</h2>
+                    <p id="nomeFavoritado"></p>
+                </div>
+                <div class="kpi_total_tipos">
+                    <h2>Total de Usuários</h2>
+                    <p id="totalUsuarios">0</p>
+                </div>
+            </div>
+            <div class="graficos">
+                <div class="grafico_total_favoritos">
+                    <canvas id="TotalFavoritos" class="grafico"></canvas>
+                </div>
+                <div class="grafico_total_tipos">
+                    <canvas id="TotalTipos" class="grafico"></canvas>
+                </div>
+            </div>
         </div>
-
     </div>
 </body>
 
 </html>
-<script>
-
-    function carregamentoInicial() {
-        const carregamento = document.getElementById('carregamento');
-        const conteudoPrincipal = document.getElementById('conteudoPrincipal');
-
-        conteudoPrincipal.style.display = 'block';
-
-        carregamento.classList.add('sumir');
-
-        setTimeout(() => {
-            carregamento.style.display = 'none';
-            conteudoPrincipal.classList.add('aparecer');
-        }, 1000); // 1 segundos de atraso
-    }
-
-    // Chama a função após um pequeno atraso (2 segundos)
-    setTimeout(carregamentoInicial, 1500);
-
-    function obterDadosDashboard() {
-        fetch('/dashboard/obterDadosDashboard').then(response => {
-            if (response.ok) {
-                response.json().then(resultado => {
-                    console.log(`resultado recebidos: ${JSON.stringify(resultado)}`);
-                    resultado.reverse();
-                    plotarGrafico(resultado);
-                });
-            } else {
-                console.error('Erro ao obter dados do dashboard:', response.statusText);
-            }
-        }).catch(error => {
-            console.error('Erro na requisição:', error);
-        });
-    }
-    function plotarGrafico(resultado) {
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Usuários', 'Viloes', 'Fichas'],
-                datasets: [{
-                    label: 'Quantidade',
-                    data: [resultado.qtd_viloes_favoritados, resultado.viloes, resultado.fichas],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    }
-</script>

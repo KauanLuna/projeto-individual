@@ -24,10 +24,10 @@
                 <div class="logo"><img src="./assets/imgs/logoBatSite.png"></div>
                 <ul class="navbar">
                     <li>
-                        <a href="./index.html">Inicial</a>
+                        <a href="index.html">Inicial</a>
                     </li>
                     <li class="a_fichas">
-                        <a id="a_fichas" href="#">Fichas</a>
+                        <a id="a_fichas" href="fichas.html">Fichas</a>
                     </li>
                     <li class="agora">
                         <a href="#">Suas Fichas</a>
@@ -47,8 +47,9 @@
         </div>
         <!--header fim-->
 
+        <h1 class="titulo">Seus Favoritos</h1>
+
         <div class="conjunto_fichas" id="conjunto_fichas">
-            <h1>Seus Favoritos</h1>
         </div>
 
         <div class="footer">
@@ -74,11 +75,11 @@
         sessionStorage.clear();
         window.location.href = "index.html";
     });
-    
+
     aFichas.style.display = "none";
     cadastro.style.display = "flex";
     iconLogout.style.display = "none";
-    
+
     if (sessionStorage.getItem("NOME_USUARIO") != null) {
         cadastro.innerHTML = `<li><a href="perfil.html">Olá, ${sessionStorage.getItem("NOME_USUARIO")}</a></li>`;
         cadastro.style.justifyContent = "center";
@@ -104,29 +105,32 @@
     // Chama a função após um pequeno atraso (2 segundos)
     setTimeout(carregamentoInicial, 1500);
 
+    
     function listarFavoritos() {
         var fk_usuario = Number(sessionStorage.getItem("ID_USUARIO"));
+        
+        const conjunto = document.getElementById("conjunto_fichas");
+        conjunto.innerHTML = "";
 
-        fetch(`/viloes/favoritos/${fk_usuario}`).then(res => {
+        fetch(`/personagens/favoritos/${fk_usuario}`).then(res => {
             if (res.ok) {
                 return res.json().then(favoritos => {
-                    var conjunto = document.getElementById("conjunto_fichas");
 
                     for (var i = 0; i < favoritos.length; i++) {
-                        const vilao = favoritos[i];
+                        const personagem = favoritos[i];
                         const card = document.createElement("div");
-                        card.className = "card-vilao";
+                        card.className = "card-personagem";
 
                         card.innerHTML = `
-                        <div class="icone_viloes">
-                            <img src="../assets/imgs/${vilao.foto}" alt="${vilao.nome}">
+                        <div class="icone_personagens">
+                            <img src="../assets/imgs/${personagem.foto}" alt="${personagem.nome}">
                         </div>
-                        <h2>${vilao.apelido}</h2>
-                        <p><strong>Nome: </strong>${vilao.nome}</p>
-                        <p><strong>Modus Operandi: </strong>${vilao.modus_operandi}</p>
-                        <p><strong>Local de Atuação: </strong>${vilao.local_atuacao}</p>
-                        <p><strong>Frase: </strong>${vilao.frase}</p>
-                        <button onclick="desfavoritar(${vilao.id})">⭐ Desfavoritar</button>
+                        <h2>${personagem.apelido}</h2>
+                        <p><strong>Nome: </strong>${personagem.nome}</p>
+                        <p><strong>Modus Operandi: </strong>${personagem.modus_operandi}</p>
+                        <p><strong>Local de Atuação: </strong>${personagem.local_atuacao}</p>
+                        <p><strong>Frase: </strong>${personagem.frase}</p>
+                        <button onclick="desfavoritar(${personagem.fk_personagem}, ${personagem.fk_usuario})">⭐ Desfavoritar</button>
                         `;
                         conjunto.appendChild(card);
                     }
@@ -137,8 +141,7 @@
             console.error("Erro no fetch dos favoritos:", err);
         });
     }
-    function removerFavorito(idVilao) {
-        var idUsuario = sessionStorage.ID_USUARIO;
+    function desfavoritar(fk_personagem, fk_usuario) {
 
         fetch("/viloes/desfavoritar", {
             method: "DELETE",
@@ -146,8 +149,8 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                fk_usuario: idUsuario,
-                fk_vilao: idVilao
+                fk_usuario: fk_usuario,
+                fk_personagem: fk_personagem
             })
         }).then(res => {
             if (res.ok) {
@@ -156,6 +159,7 @@
             }
         });
     }
+
 
 
 </script>

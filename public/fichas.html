@@ -49,9 +49,9 @@
         </div>
         <!--header fim-->
 
-        <div class="conjunto_fichas" id="conjunto_fichas">
+        <h1>Fichas dos personagens principais</h1>
 
-            <h1>Fichas Criminais dos Vilões</h1>
+        <div class="conjunto_fichas" id="conjunto_fichas">
         </div>
 
         <div class="footer">
@@ -85,24 +85,24 @@
 
     function listar() {
 
-        fetch("/viloes/listar").then(res => {
+        fetch("/personagens/listar").then(res => {
             if (res.ok) {
-                res.json().then(viloes => {
+                res.json().then(personagens => {
                     const conjunto = document.getElementById("conjunto_fichas");
-                    viloes.forEach(vilao => {
+                    personagens.forEach(personagem => {
                         const card = document.createElement("div");
-                        card.className = "card-vilao";
+                        card.className = "card-personagem";
 
                         card.innerHTML = `
-                        <div class="icone_viloes">
-                        <img src="../assets/imgs/${vilao.foto}" alt="${vilao.nome}">
+                        <div class="icone_personagens">
+                        <img src="../assets/imgs/${personagem.foto}" alt="${personagem.nome}">
                         </div>
-                        <h2>${vilao.apelido}</h2>
-                        <p><strong>Nome: </strong>${vilao.nome}</p>
-                        <p><strong>Modus Operandi: </strong>${vilao.modus_operandi}</p>
-                        <p><strong>Local de Atuação: </strong>${vilao.local_atuacao}</p>
-                        <p><strong>Frase: </strong>${vilao.frase}</p>
-                        <button onclick="favoritar(${vilao.id})">⭐ Favoritar</button>
+                        <h2>${personagem.apelido}</h2>
+                        <p><strong>Nome: </strong>${personagem.nome}</p>
+                        <p><strong>Modus Operandi: </strong>${personagem.modus_operandi}</p>
+                        <p><strong>Local de Atuação: </strong>${personagem.local_atuacao}</p>
+                        <p><strong>Frase: </strong>${personagem.frase}</p>
+                        <button onclick="favoritar(${personagem.id})">⭐ Favoritar</button>
                     `;
 
                         conjunto.appendChild(card);
@@ -112,28 +112,28 @@
         });
     }
 
-    function favoritar(fk_vilao) {
+    function favoritar(fk_personagem, fk_usuario) {
 
         var fk_usuario = Number(sessionStorage.getItem("ID_USUARIO"));
 
-        fetch("/viloes/favoritar", {
+        fetch("/personagens/favoritar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 fk_usuario: fk_usuario,
-                fk_vilao: fk_vilao
+                fk_personagem: fk_personagem
             })
         }).then(res => {
             if (res.ok) {
-                alert("Vilão favoritado com sucesso!");
+                alert("Personagem favoritado com sucesso!");
             } else {
-                alert("Erro ao favoritar vilão.");
+                alert("Erro ao favoritar personagem.");
             }
         }).catch(erro => {
-            console.error("Erro ao favoritar vilão:", erro);
-            alert("Erro ao favoritar vilão.");
+            console.error("Erro ao favoritar personagem:", erro);
+            alert("Erro ao favoritar personagem.");
         });
     }
 

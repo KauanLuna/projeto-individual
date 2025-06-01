@@ -12,4 +12,8 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.get("/obterTotalUsuarios", function (req, res) {
+    usuarioController.obterTotalUsuarios(req, res);
+});
+
 module.exports = router;

@@ -1,7 +1,7 @@
-var viloesModel = require("../models/viloesModel")
+var personagensModel = require("../models/personagensModel")
 
 function listar(req, res) {
-    viloesModel.listar().then(function (resultado) {
+    personagensModel.listar().then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
@@ -10,18 +10,18 @@ function listar(req, res) {
 
 function favoritar(req, res) {
 
-    var fk_usuario = req.body.fk_usuario;
-    var fk_vilao = req.body.fk_vilao;
+    const fk_usuario = req.body.fk_usuario;
+    const fk_personagem = req.body.fk_personagem;
 
     console.log("ID do usuário: ", fk_usuario);
 
     if (fk_usuario == undefined){
         res.status(400).send("O usuário precisa estar logado para favoritar!");
     }
-    if (fk_vilao == undefined) {
-        res.status(400).send("O ID do vilão não foi definido!");
+    if (fk_personagem == undefined) {
+        res.status(400).send("O ID do personagem não foi definido!");
     }
-    viloesModel.favoritar(fk_vilao, fk_usuario).then(function (resultado) {
+    personagensModel.favoritar(fk_personagem, fk_usuario).then(function (resultado) {
         res.status(200).json("Personagem favoritado com sucesso! " + resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
@@ -29,9 +29,9 @@ function favoritar(req, res) {
 }
 
 function listarFavoritos(req, res) {
-    var fk_usuario = req.params.fk_usuario;
+    const fk_usuario = req.params.fk_usuario;
 
-    viloesModel.listarFavoritos(fk_usuario)
+    personagensModel.listarFavoritos(fk_usuario)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -43,16 +43,16 @@ function listarFavoritos(req, res) {
         });
 }
 
-function desfavoritar () {
-    var fk_vilao = req.body.fk_vilao;
-    var fk_usuario = req.body.fk_usuario;
+function desfavoritar (req, res) {
+    const fk_personagem = req.body.fk_personagem;
+    const fk_usuario = req.body.fk_usuario;
 
-    viloesModel.desfavoritar(fk_vilao, fk_usuario)
+    personagensModel.desfavoritar(fk_personagem, fk_usuario)
         .then(function (resultado) {
             if (resultado.affectedRows > 0) {
-                res.status(200).json("Vilão desfavoritado com sucesso!");
+                res.status(200).json("Personagem desfavoritado com sucesso!");
             } else {
-                res.status(404).send("Vilão não encontrado nos favoritos.");
+                res.status(404).send("Personagem não encontrado nos favoritos.");
             }
         }).catch(function (erro) {
             res.status(500).json(erro.sqlMessage);

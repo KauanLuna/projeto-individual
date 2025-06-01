@@ -1,26 +1,26 @@
 var express = require("express");
 var router = express.Router();
 
-var viloesController = require("../controllers/viloesController");
+var personagensController = require("../controllers/personagensController");
 
 router.get("/listar", function (req, res) {
     // função a ser chamada quando /viloes/listar
-    viloesController.listar(req, res);
+    personagensController.listar(req, res);
 });
 
 router.post("/favoritar", function (req, res) {
     // função a ser chamada quando /viloes/favoritar
-    viloesController.favoritar(req, res);
+    personagensController.favoritar(req, res);
 });
 
 router.get("/favoritos/:fk_usuario", function (req, res) {
     // Função a ser chamada quando /viloes/favoritos/:fk_usuario
-    viloesController.listarFavoritos(req, res);
+    personagensController.listarFavoritos(req, res);
 });
 
-router.post("/desfavoritar", function (req, res) {
+router.delete("/desfavoritar", function (req, res) {
     // função a ser chamada quando /viloes/desfavoritar
-    viloesController.desfavoritar(req, res);
+    personagensController.desfavoritar(req, res);
 });
 
 

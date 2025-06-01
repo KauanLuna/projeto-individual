@@ -72,6 +72,7 @@ button {
   box-shadow: 0px 0px 10px var(--vermelho);
   padding: 8px;
   margin-bottom: 4px;
+  margin-top: 4px;
   color: var(--branco);
   font-family: var(--font);
   font-weight: 600;
@@ -95,7 +96,16 @@ button:hover {
   background-color: var(--preto);
 }
 
-.conjunto_fichas .card-vilao {
+.titulo {
+  font-size: 36px;
+  color: var(--branco);
+  text-shadow: 0px 0px 5px var(--vermelho);
+  margin-bottom: 30px;
+  align-self: center;
+  justify-self: center;
+}
+
+.conjunto_fichas .card-personagem {
   width: 80%;
   height: 35%;
   display: flex;
@@ -110,20 +120,26 @@ button:hover {
   padding: 26px;
   border-radius: 16px;
 }
-.conjunto_fichas .card-vilao .icone_viloes {
+.conjunto_fichas .card-personagem .icone_personagens {
   position: absolute;
-  left: 1380px;
+  left: 1430px;
 }
 
-.conjunto_fichas .card-vilao .icone_viloes img {
-  width: 300px;
-  height: 300px;
+.conjunto_fichas .card-personagem .icone_personagens img {
+  width: 250px;
+  height: 250px;
   align-self: center;
   justify-self: center;
   border-radius: 20px;
   border: 2px solid red;
 }
 
+.conjunto_fichas .card-personagem p {
+  font-size: 24px;
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 0;
+}
 
 /*Rodapé*/
 
