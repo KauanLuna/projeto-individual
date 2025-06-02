@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/pontas.css">
+    <link rel="stylesheet" href="./css/sobremim.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="icon" href="./assets/imgs/logoBatSite.png">
+    <script src="./js/sessao.js"></script>
+
+</head>
+
+<body>
+    <div class="carregamento" id="carregamento"><img src="./assets/imgs/logoBatman.gif" alt="Logo carregando"></div>
+    <div class="conteudoPrincipal" id="conteudoPrincipal">
+        <div class="header">
+            <div class="container">
+                <div class="logo"><img src="assets/imgs/logoBatSite.png"></div>
+                <ul class="navbar">
+                    <li>
+                        <a href="index.html">Inicial</a>
+                    </li>
+                    <li class="a_fichas">
+                        <a id="a_fichas" href="fichas.html">Fichas</a>
+                    </li>
+                    <li>|</li>
+                    <span class="cadastro" id="cadastro">
+                        <li>
+                            <a href="login.html">Login</a>
+                        </li>
+                        <li>
+                            <a href="cadastro.html">Cadastro</a>
+                        </li>
+                    </span>
+                    <span id="icon_logout" class="icon_logout"><img src="./assets/imgs/logoutICON.png"
+                            onclick="logout()"></span>
+                </ul>
+            </div>
+        </div>
+
+        <div class="sobre_mim">
+            <div class="nome_foto">
+                <div class="foto">
+                    <img src="./assets/imgs/batCriador.jpg" alt="Foto do criador do site">
+                </div>
+                <div class="nome">
+                    <h2>Kauan Luna</h2>
+                </div>
+            </div>
+            <div class="texto">
+                <div class="titulo">
+                    <h1>Sobre Mim</h1>
+                </div>
+                <p>
+                    Olá! Eu sou o BatCriador desse BatSite, neste projeto eu falo sobre o batman, mas oq isso tem
+                    haver
+                    comigo?
+                    Bem, eu sou um grande fã do Batman e sempre quis criar um site que pudesse compartilhar minha
+                    paixão
+                    pelo personagem, além de aprender mais sobre desenvolvimento web.
+                </p>
+                <p>
+                    Meu nome é Kauan Luna, venho da zona sul de São Paulo, diretamente do Capão Redondo, nascido e
+                    criado lá.
+                    Desde pequeno, sempre fui apaixoda por tecnologia e a capacidade de criar coisas novas, sempre
+                    quis
+                    ser um programador e continuo seguindo esse caminho.
+                </p>
+                <p>
+                    Este site é um reflexo do meu amor pelo Batman e pela programação. Aqui, você encontrará
+                    informações
+                    sobre o personagem e seu filme mais recente. Além disso, estou contando a minha história de como
+                    cheguei até aqui e como a paixão pelo Batman me inspirou a aprender mais sobre programação.
+                </p>
+                <p>
+                    Eu vejo o Batman como um símbolo de perseverança e determinação. Ele me ensinou que, mesmo
+                    enfrentando desafios, é possível superar obstáculos e alcançar nossos objetivos. Essa filosofia
+                    me motiva a continuar aprendendo e crescendo como desenvolvedor.
+                </p>
+                <p>
+                    Espero que você goste do site e encontre inspiração na história do Batman, assim como eu
+                    encontrei.
+                </p>
+                <p>Obrigado por visitar meu site!</p>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="container">
+                <div class="git_sobre_mim"><img src="./assets/imgs/logoGITHUB.png"> <span class="bat_criador"><a href="sobremim.html">Conheça o BatCriador!</a></span></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    // Função para ocultar o carregamento e mostrar o conteúdo principal
+    function carregamentoInicial() {
+        const carregamento = document.getElementById('carregamento');
+        const conteudoPrincipal = document.getElementById('conteudoPrincipal');
+
+        conteudoPrincipal.style.display = 'block';
+
+        carregamento.classList.add('sumir');
+
+        setTimeout(() => {
+            carregamento.style.display = 'none';
+            conteudoPrincipal.classList.add('aparecer');
+        }, 1000); // 1 segundos de atraso
+    }
+
+    // Chama a função após um pequeno atraso (1.5 segundos)
+    setTimeout(carregamentoInicial, 1500);
+
+      const cadastro = document.getElementById("cadastro");
+
+  const aFichas = document.getElementById("a_fichas");
+
+  const iconLogout = document.getElementById("icon_logout");
+
+  function logout() {
+    sessionStorage.clear();
+    window.location.href = "index.html";
+  }
+
+  aFichas.style.display = "none";
+  cadastro.style.display = "flex";
+  iconLogout.style.display = "none";
+
+  if (sessionStorage.getItem("NOME_USUARIO") != null) {
+    cadastro.innerHTML = `<li><a href="perfil.html">Olá, ${sessionStorage.getItem("NOME_USUARIO")}</a></li>`;
+    cadastro.style.justifyContent = "center";
+    aFichas.style.display = "block";
+    iconLogout.style.display = "flex";
+  }
+
+
+</script>

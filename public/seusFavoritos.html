@@ -15,7 +15,7 @@
 </head>
 
 <body onload="listarFavoritos()">
-    <div class="carregamento" id="carregamento"><img src="./assets/imgs/charadaIMG.gif" alt="Logo carregando"></div>
+    <div class="carregamento" id="carregamento"><img src="./assets/imgs/logoBatman.gif" alt="Logo carregando"></div>
     <div class="conteudoPrincipal" id="conteudoPrincipal">
 
         <!--header inicio-->
@@ -41,7 +41,8 @@
                             <a href="cadastro.html">Cadastro</a>
                         </li>
                     </span>
-                    <span id="icon_logout" class="icon_logout"><img src="./assets/imgs/logoutICON.png"></span>
+                    <span id="icon_logout" class="icon_logout" onclick="logout()"><img
+                            src="./assets/imgs/logoutICON.png"></span>
                 </ul>
             </div>
         </div>
@@ -54,7 +55,7 @@
 
         <div class="footer">
             <div class="container">
-                <div class="logo_footer"><img src="./assets/imgs/logoBatSite.png"></div>
+                <div class="git_sobre_mim"><a href="https://github.com/KauanLuna/projeto-individual"><img src="./assets/imgs/logoGITHUB.png"></a> <span class="bat_criador"><a href="sobremim.html">Conheça o BatCriador!</a></span></div>
             </div>
         </div>
     </div>
@@ -71,10 +72,10 @@
 
     const iconLogout = document.getElementById("icon_logout");
 
-    iconLogout.addEventListener("click", () => {
+    function logout() {
         sessionStorage.clear();
         window.location.href = "index.html";
-    });
+    }
 
     aFichas.style.display = "none";
     cadastro.style.display = "flex";
@@ -105,10 +106,10 @@
     // Chama a função após um pequeno atraso (2 segundos)
     setTimeout(carregamentoInicial, 1500);
 
-    
+
     function listarFavoritos() {
         var fk_usuario = Number(sessionStorage.getItem("ID_USUARIO"));
-        
+
         const conjunto = document.getElementById("conjunto_fichas");
         conjunto.innerHTML = "";
 

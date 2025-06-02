@@ -69,10 +69,9 @@
                         <button class="botao" onclick="entrar()">Entrar</button>
                     </div>
 
-                    <div id="div_aguardar" class="loading-div">
-                        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTF3M250cnZsOTI0OHJldzllZWd4MDhsc3Z3d3Nldml6aWlxdXRkZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/dOUf1WoormUPAsAe2H/giphy.gif"
-                            id="loading-gif">
-                    </div>
+                    <!-- <div id="div_aguardar" class="loading-div">
+                        
+                    </div> -->
 
                     <div id="div_erros_login"></div>
                 </div>
@@ -85,7 +84,7 @@
         <!--footer inicio-->
         <div class="footer">
             <div class="container">
-                <div class="logo_footer"><img src="./assets/imgs/logoBatSite.png"></div>
+                <div class="git_sobre_mim"><a href="https://github.com/KauanLuna/projeto-individual"><img src="./assets/imgs/logoGITHUB.png"></a> <span class="bat_criador"><a href="sobremim.html">Conheça o BatCriador!</a></span></div>
             </div>
         </div>
         <!--footer fim-->
@@ -95,16 +94,6 @@
 </html>
 
 <script>
-
-// function subir() {
-//         const email = document.getElementById("email");
-//         const senha = document.getElementById("senha");
-
-//         email.style.transform = "translateY(-20px)";
-//         senha.style.transform = "translateY(-20px)";
-//         email.style.transition = "transform 0.3s ease";
-//         senha.style.transition = "transform 0.3s ease";
-//     }
 
     // Função para ocultar o carregamento e mostrar o conteúdo principal
     function carregamentoInicial() {
@@ -121,7 +110,7 @@
         }, 1000); // 1 segundos de atraso
     }
 
-    // Chama a função após um pequeno atraso (2 segundos)
+    // Chama a função após um pequeno atraso (1.5 segundos)
     setTimeout(carregamentoInicial, 1500);
 
     function entrar() {

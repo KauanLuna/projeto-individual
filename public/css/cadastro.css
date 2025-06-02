@@ -13,6 +13,7 @@ body {
   font-family: var(--font);
   background: var(--preto);
   user-select: none;
+  overflow: hidden;
 }
 
 :root {
@@ -63,28 +64,6 @@ body {
   margin: auto;
 }
 
-/*Rodapé*/
-
-.footer {
-  background-color: var(--preto);
-  height: 150px;
-  color: var(--vermelho);
-  border-top: 1px solid var(--vermelho);
-  display: flex;
-  font-size: 15px;
-  box-shadow: 0px -5px 70px var(--vermelho);
-  position: relative;
-}
-
-.footer .container {
-  justify-content: center;
-  text-align: center;
-}
-
-.footer .container .version {
-  font-size: 12px;
-}
-
 /*Tela de cadastro*/
 
 .cadastro {
@@ -95,18 +74,18 @@ body {
 
 .cadastro .container {
   position: relative;
-  justify-self: flex-start;
-  align-self: flex-start;
+  justify-self: center;
+  align-self: center;
   height: 100%;
   margin: 0;
   width: 45%;
-  border-right: 2px solid var(--vermelho);
 }
 
 .cadastro .img_lateral {
   width: 100%;
-  height: 100%;
+  height: 105%;
   align-self: flex-end;
+  margin: 0;
 }
 
 .cadastro .img_lateral img {
@@ -114,6 +93,8 @@ body {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  box-sizing: border-box;
+  margin: 0;
 }
 .card {
   width: 100%;
