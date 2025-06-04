@@ -156,15 +156,6 @@
   width: 300px;
 }
 
-<<<<<<< HEAD
-=======
-.footer .container .git_sobre_mim a {
-  text-decoration: none;
-  color: var(--branco);
-  transition: all 0.6s ease; 
-}
->>>>>>> 2f5d2ed381e78d99bd2e50e7019cedeb1d4086c0
-
 .footer .container .git_sobre_mim img:hover {
   color: var(--vermelho);
   transition: all 0.6s ease;
