@@ -4,7 +4,7 @@
   --tamanho-header: 80px;
   --tamanho-conteudoInicial: calc(100% - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-simulador: calc(100% - var(--tamanho-header) - var(--tamanho-footer) - 2px);
-  --tamanho-login: calc(100% - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-login: calc(100% - var(--tamanho-header) - var(--tamanho-footer) - 42px);
   --tamanho-footer: 65px;
   --vermelho: red;
   --verde: #2CFF05;
@@ -156,14 +156,8 @@
   width: 300px;
 }
 
-.footer .container .git_sobre_mim a {
-  text-decoration: none;
-  color: var(--branco);
-  transition: all 0.6s ease;
-  border-bottom: 1px solid var(--vermelho);
-}
 
-.footer .container .git_sobre_mim a:hover {
+.footer .container .git_sobre_mim img:hover {
   color: var(--vermelho);
   transition: all 0.6s ease;
   cursor: pointer;
@@ -182,6 +176,16 @@
 .footer .container .git_sobre_mim img:hover {
   transform: scale(1.1);
   transition: all 0.6s ease;
+}
+
+.footer_sobremim:hover {
+  color: var(--vermelho);
+}
+
+.footer_sobremim {
+  border-bottom: 1px solid var(--vermelho);
+  text-decoration: none;
+  color: var(--branco);
 }
 
 .footer .container .logo_footer {

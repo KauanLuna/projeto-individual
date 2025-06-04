@@ -1,13 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Jersey+15&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 body {
   margin: 0;
   padding: 0;
@@ -22,7 +15,7 @@ body {
   --tamanho-header: 80px;
   --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
-  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 6px);
+  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 200px);
   --tamanho-footer: 95px;
   --vermelho: red;
   --branco: white;
@@ -56,7 +49,7 @@ body {
   transition: opacity 1s ease;
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .conteudoPrincipal.aparecer {
@@ -67,40 +60,6 @@ body {
   display: flex;
   width: 80%;
   margin: auto;
-}
-
-/*Rodapé*/
-
-.footer {
-  display: flex;
-  flex-direction: row;
-  background-color: var(--preto);
-  height: var(--tamanho-footer);
-  color: var(--vermelho);
-  border-top: 1px solid var(--vermelho);
-  font-size: 15px;
-  box-shadow: 0px -5px 70px var(--vermelho);
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.footer .container {
-  display: flex;
-  margin: 0;
-  align-self: center;
-  justify-self: flex-start;
-  width: 100%;
-  height: 100%;
-}
-
-.footer .container .logo_footer {
-  width: 100px;
-  height: fit-content;
-}
-
-.footer .container .logo_footer img {
-  width: 100px;
-  height: fit-content;
 }
 
 /*Tela de Login*/
@@ -244,70 +203,5 @@ body {
   scale: 1.1;
 }
 
-.loading-div {
-  width: 50px;
-  display: none;
-}
 
-#div_erros_login {
-  display: none
-}
 
-#alerta {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-.mensagem-alarme {
-  background-color: white;
-  border-radius: 5px;
-  width: 300px;
-  height: 80px;
-  margin: 10px;
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.mensagem-alarme h3 {
-  font-size: 14px;
-  margin: 0;
-}
-
-.mensagem-alarme .informacao {
-  width: 66%;
-}
-
-.alarme-sino {
-  width: 48px;
-  height: 48px;
-  animation-name: bell;
-  animation-duration: 4s;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
-  background-size: cover;
-  animation-iteration-count: infinite;
-}
-
-@keyframes bell {
-  0% {
-    transform: rotate(25deg)
-  }
-
-  25% {
-    transform: rotate(-25deg)
-  }
-
-  50% {
-    transform: rotate(25deg)
-  }
-
-  75% {
-    transform: rotate(-25deg)
-  }
-
-  100% {
-    transform: rotate(25deg)
-  }
-}
