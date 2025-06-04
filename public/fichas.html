@@ -129,11 +129,8 @@
             if (res.ok) {
                 alert("Personagem favoritado com sucesso!");
             } else {
-                alert("Erro ao favoritar personagem.");
-            }
-        }).catch(erro => {
-            console.error("Erro ao favoritar personagem:", erro);
-            alert("Erro ao favoritar personagem.");
+                alert("Você já favoritou esse personagem!");
+            } 
         });
     }
 
