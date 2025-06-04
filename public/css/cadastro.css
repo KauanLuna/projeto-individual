@@ -1,19 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Jersey+15&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 body {
   margin: 0;
   padding: 0;
   font-family: var(--font);
   background: var(--preto);
   user-select: none;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 :root {
@@ -83,9 +76,8 @@ body {
 
 .cadastro .img_lateral {
   width: 100%;
-  height: 105%;
+  height: 100%;
   align-self: flex-end;
-  margin: 0;
 }
 
 .cadastro .img_lateral img {
@@ -93,8 +85,6 @@ body {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  box-sizing: border-box;
-  margin: 0;
 }
 .card {
   width: 100%;
@@ -156,20 +146,11 @@ body {
   font-weight: 600;
   color: var(--vermelho);
   background: transparent;
+  border: none;
   border-bottom: 1px solid var(--branco);
   border-radius: 0; 
   padding: 2px;
   outline: none;
-}
-
-.formulario select {
-  border: 2px solid var(--preto);
-  background-color: white;
-  color: beige;
-  height: 36px;
-  text-align: center;
-  border-radius: 10px;
-  margin: 0;
 }
 
 .campo {
@@ -204,144 +185,4 @@ body {
   transition: all 0.6s ease;
   scale: 1.1;
   box-shadow: none;
-}
-
-.loading-div {
-  width: 50px;
-  display: none;
-}
-
-.loading-div img {
-  height: 50px;
-  width: 50px;
-}
-
-#div_erros_cadastro {
-  display: none
-}
-
-/* FORMULARIO */
-
-.alerta_erro {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.card_erro {
-  display: none;
-  background-color: #fff;
-  color: black;
-  width: 230px;
-  position: fixed;
-  border-radius: 4px;
-  border: #ED145B 3px solid;
-  padding: 10px;
-  margin-right: 10%;
-}
-
-.card_erro #mensagem_erro {
-  font-weight: 500;
-  font-size: 20px;
-}
-
-.formulario .tipo_campo {
-  font-size: 20px;
-  font-weight: 600 !important;
-}
-
-.formulario {
-  display: flex;
-  flex-direction: column;
-}
-
-input {
-  margin-bottom: 10px;
-  border: 2px solid var(--preto);
-  padding: 10px;
-  text-align: center;
-  border-radius: 10px;
-}
-
-.btn {
-  font-family: var(--font);
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 18px;
-  padding: 10px 15px;
-  color: white;
-  background-color: #ED145B;
-  width: 120px;
-  align-self: center;
-  margin-top: 5px;
-}
-
-.loading-div {
-  width: 50px;
-  margin: auto;
-  display: none;
-}
-
-.loading-div img {
-  height: 50px;
-  width: 50px;
-}
-
-#alerta {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-.mensagem-alarme {
-  background-color: white;
-  border-radius: 5px;
-  width: 300px;
-  height: 80px;
-  margin: 10px;
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.mensagem-alarme h3 {
-  font-size: 14px;
-  margin: 0;
-}
-
-.mensagem-alarme .informacao {
-  width: 66%;
-}
-
-.alarme-sino {
-  width: 48px;
-  height: 48px;
-  animation-name: bell;
-  animation-duration: 4s;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
-  background-size: cover;
-  animation-iteration-count: infinite;
-}
-
-@keyframes bell {
-  0% {
-    transform: rotate(25deg)
-  }
-
-  25% {
-    transform: rotate(-25deg)
-  }
-
-  50% {
-    transform: rotate(25deg)
-  }
-
-  75% {
-    transform: rotate(-25deg)
-  }
-
-  100% {
-    transform: rotate(25deg)
-  }
 }

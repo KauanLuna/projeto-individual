@@ -52,7 +52,6 @@ INSERT INTO personagem (apelido, nome, modus_operandi, local_atuacao, frase, fot
 ('Mulher-Gato', 'Selina Kyle', 'Furtos precisos e justiça pessoal', 'Gotham City', 'Eu cuido de mim mesma.', 'mulhergato.jpg', 'Heroi'),
 ('Comissário Gordon', 'James Gordon', 'Investigação policial e parceria com Batman', 'Departamento de Polícia de Gotham', 'Confiamos um no outro.', 'gordon.jpg', 'Heroi');
 
-SELECT * FROM personagem;
 
 INSERT INTO favoritos(fk_usuario, fk_personagem) VALUES
 	(1, 2),
@@ -63,7 +62,7 @@ INSERT INTO favoritos(fk_usuario, fk_personagem) VALUES
 	(6, 2),
 	(7, 2),
 	(7, 1),
-    (1, 1), 
+    (1, 1),
 	(2, 4),
 	(3, 1),
 	(4, 6),
@@ -128,9 +127,6 @@ SELECT
 	* 
 FROM
 	dashboard;
-
-
-
 
 CREATE VIEW porcentagemTipos as
 SELECT p.tipo, COUNT(*) AS quantidade 

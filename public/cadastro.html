@@ -12,13 +12,14 @@
 
   <link rel="stylesheet" href="./css/cadastro.css" />
   <link rel="stylesheet" href="./css/pontas.css">
-  <link rel="icon" href="./assets/icon/logo.png" />
+  <link rel="icon" href="./assets/imgs/logoBatSite.png"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
 <body>
   <div class="carregamento" id="carregamento"><img src="./assets/imgs/logoBatman.gif" alt="Logo carregando"></div>
   <div class="conteudoPrincipal" id="conteudoPrincipal">
+
     <!--header inicio-->
     <div class="header">
       <div class="container">
@@ -39,7 +40,7 @@
               <a href="#">Cadastro</a>
             </li>
           </span>
-          <span id="icon_logout" class="icon_logout"><img src="./assets/imgs/logoutICON.png"></span>
+          <span id="icon_logout" class="icon_logout" onclick="logout()"><img src="./assets/imgs/logoutICON.png"></span>
         </ul>
       </div>
     </div>
@@ -76,9 +77,6 @@
               <input id="confirmacao_senha_input" type="password" placeholder="******" required />
             </div>
             <button class="botao" onclick="cadastrar()">Cadastrar</button>
-          </div>
-          <div id="div_aguardar" class="loading-div">
-            <img src="./assets/circle-loading.gif" id="loading-gif" />
           </div>
 
           <div id="div_erros_cadastro"></div>
@@ -141,7 +139,7 @@
       mensagem_erro.innerHTML =
         "(Preencha todos os campos para realizar o cadastro)";
 
-      finalizarAguardar();
+      // finalizarAguardar();
       return false;
     } else {
       setInterval(sumirMensagem, 5000);
@@ -157,7 +155,7 @@
       mensagem_erro.innerHTML =
         "(Digite os valores de forma correta nos campos)";
 
-      finalizarAguardar();
+      // finalizarAguardar();
       return false;
     } else {
       setInterval(sumirMensagem, 5000);
@@ -192,14 +190,14 @@
           }, "2000");
 
           limparFormulario();
-          finalizarAguardar();
+          // finalizarAguardar();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
+        // finalizarAguardar();
       });
 
     return false;
@@ -217,7 +215,7 @@
 
   function logout() {
     sessionStorage.clear();
-    window.location.href = "index.html";
+    window.location = "index.html";
   }
 
   aFichas.style.display = "none";

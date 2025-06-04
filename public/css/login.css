@@ -160,16 +160,6 @@ body {
   outline: none;
 }
 
-.formulario select {
-  border: 2px solid var(--preto);
-  background-color: white;
-  color: beige;
-  height: 36px;
-  text-align: center;
-  border-radius: 10px;
-  margin: 0;
-}
-
 .campo {
   display: flex;
   flex-direction: column;
