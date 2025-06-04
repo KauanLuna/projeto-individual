@@ -52,6 +52,7 @@ INSERT INTO personagem (apelido, nome, modus_operandi, local_atuacao, frase, fot
 ('Mulher-Gato', 'Selina Kyle', 'Furtos precisos e justiça pessoal', 'Gotham City', 'Eu cuido de mim mesma.', 'mulhergato.jpg', 'Heroi'),
 ('Comissário Gordon', 'James Gordon', 'Investigação policial e parceria com Batman', 'Departamento de Polícia de Gotham', 'Confiamos um no outro.', 'gordon.jpg', 'Heroi');
 
+SELECT * FROM personagem;
 
 INSERT INTO favoritos(fk_usuario, fk_personagem) VALUES
 	(1, 2),
@@ -62,7 +63,7 @@ INSERT INTO favoritos(fk_usuario, fk_personagem) VALUES
 	(6, 2),
 	(7, 2),
 	(7, 1),
-    (1, 1),
+    (1, 1), 
 	(2, 4),
 	(3, 1),
 	(4, 6),
@@ -128,7 +129,7 @@ SELECT
 FROM
 	dashboard;
 
-DELETE FROM favoritos WHERE fk_vilao = 2 AND fk_usuario = 1;
+
 
 
 CREATE VIEW porcentagemTipos as
@@ -144,7 +145,7 @@ CREATE OR REPLACE VIEW nomeMaisFavoritado as
 SELECT
 	p.nome,
     p.apelido,
-    count(f.fk_personagem) qtdFavoritados
+    count(f.fk_personagem) as qtdFavoritados
 FROM
 	favoritos f
 JOIN
@@ -153,10 +154,12 @@ ON
 	p.id = f.fk_personagem
 GROUP BY
 	p.apelido, p.nome
-HAVING 
-	max(qtdFavoritados);
+ORDER BY
+	count(f.fk_personagem) desc limit 1;
     
 SELECT * FROM nomeMaisFavoritado;
+
+SELECT * FROM personagem ORDER BY apelido asc;
 
 
     

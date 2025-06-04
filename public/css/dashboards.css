@@ -1,13 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Jersey+15&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 html {
   overflow: hidden;
   height: 100%;
@@ -219,7 +212,7 @@ body {
   justify-content: center;
   text-align: center;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-  padding: 20px;
+  padding: 10px;
 }
 
 .kpi_total_usuarios {
@@ -234,6 +227,26 @@ body {
   text-align: center;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
   padding: 10px;
+}
+
+.KPIS h2,p {
+  margin: 0;
+}
+
+.KPIS p {
+  font-size: 25px;
+}
+
+.KPIS h2 {
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: var(--vermelho);
+}
+
+.KPIS div {
+  height: fit-content;
+  width: fit-content;
+  padding: 35px;
 }
 
 .kpi_nome_favoritado {

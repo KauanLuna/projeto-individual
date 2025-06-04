@@ -168,7 +168,7 @@ function plotarGraficoFavoritos(favoritos) {
           labels: {
             color: 'white',
             font: {
-              size: 13
+              size: 17
             }
           },
 
@@ -176,7 +176,7 @@ function plotarGraficoFavoritos(favoritos) {
         title: {
           display: true,
           text: 'Gráfico de Favoritos dos Personagens',
-          color: 'white',
+          color: 'red',
           font: {
             size: 20
           }
@@ -192,9 +192,13 @@ function plotarGraficoTipos(tipos) {
   const nomes = [];
   const DadosTipos = [];
 
+  var qtdTotal = tipos[0].quantidade + tipos[1].quantidade;
+
+
+
   for (var i = 0; i < tipos.length; i++) {
     nomes.push(tipos[i].tipo);
-    DadosTipos.push(tipos[i].quantidade);
+    DadosTipos.push((tipos[i].quantidade / qtdTotal * 100).toFixed(1));
   }
 
   const ctx = document.getElementById('TotalTipos').getContext('2d');
@@ -219,16 +223,17 @@ function plotarGraficoTipos(tipos) {
           labels: {
             color: 'white',
             font: {
-              size: 13
+              size: 17
             }
           }
         },
         title: {
           display: true,
           text: 'Gráfico de Personagens Favoritados por Tipo',
-          color: 'white',
+          color: 'red',
+          maintainAspectRatio: true,
           font: {
-            size: 17
+            size: 20
           }
         }
       }
