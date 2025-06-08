@@ -127,7 +127,7 @@ function plotarGraficoFavoritos(favoritos) {
       labels: nomes,
       datasets: [{
         label: 'Quantidade de Favoritos',
-        data: DadosFavoritos, // Exemplo de dados
+        data: DadosFavoritos, 
         borderWidth: 1
       }]
     },
@@ -171,6 +171,7 @@ function plotarGraficoFavoritos(favoritos) {
               size: 17
             }
           },
+          
         },
         title: {
           display: true,
@@ -201,7 +202,7 @@ function plotarGraficoTipos(tipos) {
   }
 
   const ctx = document.getElementById('TotalTipos').getContext('2d');
-  const TotalTipos = new Chart(ctx, {
+   new Chart(ctx, {
     type: 'pie',
     data: {
       labels: nomes,

@@ -12,13 +12,21 @@
 
   <link rel="stylesheet" href="./css/cadastro.css" />
   <link rel="stylesheet" href="./css/pontas.css">
-  <link rel="icon" href="./assets/imgs/logoBatSite.png"/>
+  <link rel="icon" href="./assets/imgs/logoBatSite.png" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
 <body>
   <div class="carregamento" id="carregamento"><img src="./assets/imgs/logoBatman.gif" alt="Logo carregando"></div>
   <div class="conteudoPrincipal" id="conteudoPrincipal">
+
+    <!-- Div Modal para informar o usuário -->
+    <div class="modal" id="modal">
+      <div class="card_modal" id="card">
+        <img id="imagem_resposta" src="" alt="Imagem de retorno para o usuário">
+        <p class="info_usuário"></p>
+      </div>
+    </div>
 
     <!--header inicio-->
     <div class="header">
@@ -78,9 +86,6 @@
             </div>
             <button class="botao" onclick="cadastrar()">Cadastrar</button>
           </div>
-
-          <div id="div_erros_cadastro"></div>
-        </div>
       </div>
       <div class="img_lateral">
         <img src="./assets/imgs/loginIMG.jpg" alt="Imagem do batman">
@@ -90,7 +95,9 @@
     <!--footer inicio-->
     <div class="footer">
       <div class="container">
-        <div class="git_sobre_mim"><a href="https://github.com/KauanLuna/projeto-individual"><img src="./assets/imgs/logoGITHUB.png"></a> <span class="bat_criador"><a href="sobremim.html" class="footer_sobremim">Conheça o BatCriador!</a></span></div>
+        <div class="git_sobre_mim"><a href="https://github.com/KauanLuna/projeto-individual"><img
+              src="./assets/imgs/logoGITHUB.png"></a> <span class="bat_criador"><a href="sobremim.html"
+              class="footer_sobremim">Conheça o BatCriador!</a></span></div>
       </div>
     </div>
     <!--footer fim-->
@@ -119,7 +126,7 @@
   setTimeout(carregamentoInicial, 1500);
 
   function cadastrar() {
-    // aguardar();
+
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -130,37 +137,35 @@
 
     // Verificando se há algum campo em branco
     if (
-      nomeVar == "" ||
-      senhaVar == "" ||
-      emailVar == "" ||
-      confirmacaoSenhaVar == ""
+      nomeVar == "" || senhaVar == "" || emailVar == "" || confirmacaoSenhaVar == ""
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Preencha todos os campos para realizar o cadastro)";
+      let mensagem = "Preencha todos os campos, para realizar o cadastro"
 
-      // finalizarAguardar();
+      let respostaModal = false;
+      exibirModal(respostaModal, mensagem);
+
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
-    if (
+
+    } else if (
       nomeVar.length < 1 ||
       emailVar.includes("@") == false ||
       emailVar.includes(".com") == false ||
       senhaVar.length < 6 ||
       confirmacaoSenhaVar != senhaVar
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Digite os valores de forma correta nos campos)";
+      let mensagem = "Você deve cumprir todos os requisitos de senha para se cadastrar"
+      let respostaModal = false;
 
-      // finalizarAguardar();
+      exibirModal(respostaModal, mensagem);
+
       return false;
     } else {
-      setInterval(sumirMensagem, 5000);
-    }
 
+      let mensagem = "Cadastro realizado com sucesso"
+      let respostaModal = true;
+
+      exibirModal(respostaModal, mensagem);
+    }
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -180,31 +185,34 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
             window.location = "login.html";
           }, "2000");
 
           limparFormulario();
-          // finalizarAguardar();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        // finalizarAguardar();
       });
 
     return false;
   }
 
-  function sumirMensagem() {
-    cardErro.style.display = "none";
+  function exibirModal(respostaModal, mensagem){
+    const modal = document.getElementById("modal");
+    const cardModal = document.getElementById("card_modal")
+    const infoUsuario = document.getElementById("info_usuario");
+    const imagemResposta = document.getElementById("imagem_resposta");
+
+    modal.style.display = ""
+
+    if(respostaModal = true) {
+
+    }
   }
 
   const cadastro = document.getElementById("cadastro");
