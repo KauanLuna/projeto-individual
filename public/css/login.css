@@ -148,6 +148,7 @@ body {
   text-align: center;
   text-justify: center;
   margin: 0;
+  margin-right: 10px;
   margin-bottom: 10px;
   font-family: var(--font);
   font-weight: 600;
@@ -158,24 +159,21 @@ body {
   border-radius: 0; 
   padding: 2px;
   outline: none;
-}
-
-.formulario select {
-  border: 2px solid var(--preto);
-  background-color: white;
-  color: beige;
-  height: 36px;
-  text-align: center;
-  border-radius: 10px;
-  margin: 0;
+  height: 20px;
+  width: 80%;
 }
 
 .campo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: start;
   padding: 5px 0;
   margin-bottom: 20px;
+}
+
+.campo .MostrarOcultar {
+  width: 24px;
+  height: 100%;
 }
 
 .botao {
