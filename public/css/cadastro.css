@@ -142,6 +142,8 @@ body {
   text-align: center;
   text-justify: center;
   margin: 0;
+  margin-right: 10px;
+  margin-bottom: 10px;
   font-family: var(--font);
   font-weight: 600;
   color: var(--vermelho);
@@ -151,14 +153,21 @@ body {
   border-radius: 0; 
   padding: 2px;
   outline: none;
+  height: 20px;
+  width: 80%;
 }
 
 .campo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: start;
   padding: 5px 0;
   margin-bottom: 20px;
+}
+
+.campo .MostrarOcultar {
+  width: 24px;
+  height: 100%;
 }
 
 .botao {

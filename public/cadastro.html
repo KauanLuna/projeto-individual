@@ -12,7 +12,7 @@
 
   <link rel="stylesheet" href="./css/cadastro.css" />
   <link rel="stylesheet" href="./css/pontas.css">
-  <link rel="icon" href="./assets/imgs/logoBatSite.png" />
+  <link rel="icon" href="./assets/icon/logo.png" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
@@ -22,9 +22,9 @@
 
     <!-- Div Modal para informar o usuário -->
     <div class="modal" id="modal">
-      <div class="card_modal" id="card">
-        <img id="imagem_resposta" src="" alt="Imagem de retorno para o usuário">
-        <p class="info_usuário"></p>
+      <div class="card_modal" id="card_modal">
+        <img id="imagem_resposta" class="imagem_resposta" alt="Imagem de retorno para o usuário">
+        <p class="info_usuário" id="info_usuario"></p>
       </div>
     </div>
 
@@ -48,18 +48,12 @@
               <a href="#">Cadastro</a>
             </li>
           </span>
-          <span id="icon_logout" class="icon_logout" onclick="logout()"><img src="./assets/imgs/logoutICON.png"></span>
         </ul>
       </div>
     </div>
     <!--header fim-->
 
     <div class="cadastro">
-      <div class="alerta_erro">
-        <div class="card_erro" id="cardErro">
-          <span id="mensagem_erro"></span>
-        </div>
-      </div>
       <div class="container">
         <div class="card card-cadastro">
           <h2>BatCadastro</h2>
@@ -77,15 +71,21 @@
             <!-- campo para inserir a senha -->
             <div class="campo">
               <span>Senha:</span>
-              <input id="senha_input" type="password" placeholder="******" required />
+              <input id="senha_input" type="password" placeholder="Digite a sua senha" required />
+              <img onclick="mostrarOcultar_Senha()" src="./assets/imgs/olhoMostrar.png" id="MostrarOcultar1"
+                class="MostrarOcultar" alt="Icone para mostrar ou ocultar senha">
             </div>
             <!-- campo para inserir a confirmação da senha -->
             <div class="campo">
               <span>Confirmação da Senha:</span>
-              <input id="confirmacao_senha_input" type="password" placeholder="******" required />
+              <input id="confirmacao_senha_input" type="password" placeholder="Digite a senha novamente" required />
+              <img onclick="mostrarOcultar_ConfirmarSenha()" src="./assets/imgs/olhoMostrar.png" id="MostrarOcultar2"
+                class="MostrarOcultar" alt="Icone para mostrar ou ocultar senha">
             </div>
             <button class="botao" onclick="cadastrar()">Cadastrar</button>
           </div>
+        </div>
+
       </div>
       <div class="img_lateral">
         <img src="./assets/imgs/loginIMG.jpg" alt="Imagem do batman">
@@ -107,6 +107,13 @@
 </html>
 
 <script>
+
+  if (sessionStorage.ID_USUARIO != undefined){
+    alert('Você não pode acessar essa página já logado!')
+
+    window.location = "index.html";
+  }
+
   // Função para ocultar o carregamento e mostrar o conteúdo principal
   function carregamentoInicial() {
     const carregamento = document.getElementById('carregamento');
@@ -125,8 +132,37 @@
   // Chama a função responsável por realizar o carregamento da página, após um pequeno atraso (1.5 segundos)
   setTimeout(carregamentoInicial, 1500);
 
-  function cadastrar() {
+  function mostrarOcultar_Senha() {
+        const campoSenha = document.getElementById("senha_input"); //Guarda o id do campo senha
+        const campoConfirmarSenha = document.getElementById("confirmacao_senha_input");
+        const olho = document.getElementById("MostrarOcultar1"); //Guarda o id do olho ao lado da senha
+        const olho2 = document.getElementById("MostrarOcultar2");
 
+        // Condicional para alterar a visualização e alterar tambem o botão ao lado do campo
+        if (campoSenha.type == "password") {
+            campoSenha.type = "text";
+            olho.src = "./assets/imgs/olhoOcultar.png";
+        } else if (campoSenha.type == "text") {
+            campoSenha.type = "password";
+            olho.src = "./assets/imgs/olhoMostrar.png";
+        }
+    }
+
+    function mostrarOcultar_ConfirmarSenha() {
+        const campoConfirmarSenha = document.getElementById("confirmacao_senha_input");
+        const olho = document.getElementById("MostrarOcultar2");
+
+        // Condicional para alterar a visualização e alterar tambem o botão ao lado do campo
+        if (campoConfirmarSenha.type == "password") {
+            campoConfirmarSenha.type = "text";
+            olho.src = "./assets/imgs/olhoOcultar.png";
+        } else if (campoConfirmarSenha.type == "text") {
+            campoConfirmarSenha.type = "password";
+            olho.src = "./assets/imgs/olhoMostrar.png";
+        }
+    }
+
+  function cadastrar() {
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -153,19 +189,52 @@
       senhaVar.length < 6 ||
       confirmacaoSenhaVar != senhaVar
     ) {
-      let mensagem = "Você deve cumprir todos os requisitos de senha para se cadastrar"
+
+      let mensagem;
+
+      if (nomeVar.length < 1) {
+        mensagem = "O nome deve conter no minímo duas letras";
+      } else if (senhaVar.length < 6) {
+        mensagem = "A senha deve conter no minímo 7 letras";
+      } else if (confirmacaoSenhaVar != senhaVar) {
+        mensagem = "As senhas não coincidem"
+      } else {
+        mensagem = "Email inválido";
+      }
+
       let respostaModal = false;
 
       exibirModal(respostaModal, mensagem);
 
       return false;
-    } else {
-
-      let mensagem = "Cadastro realizado com sucesso"
-      let respostaModal = true;
-
-      exibirModal(respostaModal, mensagem);
     }
+
+    function exibirModal(respostaModal, mensagem) {
+      const modal = document.getElementById("modal");
+      const cardModal = document.getElementById("card_modal")
+      const infoUsuario = document.getElementById("info_usuario");
+      const imagemResposta = document.getElementById("imagem_resposta");
+
+
+      if (respostaModal == true) {
+        imagemResposta.src = "./assets/imgs/imgCerto.png"
+      } else {
+        imagemResposta.src = "./assets/imgs/imgErro.png"
+      }
+
+      infoUsuario.innerHTML = mensagem;
+      modal.style.display = "flex";
+
+      setTimeout(ocultarModal, 3000)
+
+    }
+
+    function ocultarModal() {
+      const modal = document.getElementById("modal");
+
+      modal.style.display = "none";
+    }
+
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -186,6 +255,11 @@
 
         if (resposta.ok) {
 
+          let mensagem = "Cadastro realizado com sucesso"
+          let respostaModal = true;
+
+          exibirModal(respostaModal, mensagem);
+
           setTimeout(() => {
             window.location = "login.html";
           }, "2000");
@@ -202,40 +276,21 @@
     return false;
   }
 
-  function exibirModal(respostaModal, mensagem){
-    const modal = document.getElementById("modal");
-    const cardModal = document.getElementById("card_modal")
-    const infoUsuario = document.getElementById("info_usuario");
-    const imagemResposta = document.getElementById("imagem_resposta");
-
-    modal.style.display = ""
-
-    if(respostaModal = true) {
-
-    }
+  function sumirMensagem() {
+    cardErro.style.display = "none";
   }
 
   const cadastro = document.getElementById("cadastro");
 
   const aFichas = document.getElementById("a_fichas");
 
-  const iconLogout = document.getElementById("icon_logout");
-
-  function logout() {
-    sessionStorage.clear();
-    window.location = "index.html";
-  }
 
   aFichas.style.display = "none";
   cadastro.style.display = "flex";
-  iconLogout.style.display = "none";
 
   if (sessionStorage.getItem("NOME_USUARIO") != null) {
     cadastro.innerHTML = `<li><a href="perfil.html">Olá, ${sessionStorage.getItem("NOME_USUARIO")}</a></li>`;
     cadastro.style.justifyContent = "center";
     aFichas.style.display = "block";
-    iconLogout.style.display = "flex";
   }
-
-
 </script>
