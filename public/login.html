@@ -235,7 +235,6 @@
 
     aFichas.style.display = "none";
     cadastro.style.display = "flex";
-    iconLogout.style.display = "none";
 
     if (sessionStorage.getItem("NOME_USUARIO") != null) {
         cadastro.innerHTML = `<li><a href="perfil.html">Olá, ${sessionStorage.getItem("NOME_USUARIO")}</a></li>`;
@@ -248,8 +247,8 @@
         const cardModal = document.getElementById("card_modal")
         const infoUsuario = document.getElementById("info_usuario");
         const imagemResposta = document.getElementById("imagem_resposta");
-
-
+        
+        
         if (respostaModal == true) {
             imagemResposta.src = "./assets/imgs/imgCerto.png"
         } else {

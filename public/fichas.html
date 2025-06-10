@@ -186,16 +186,17 @@
         modal.style.display = "none";
     }
 
+    function logout() {
+        sessionStorage.clear();
+        window.location = "index.html";
+    }
+
     const cadastro = document.getElementById("cadastro");
 
     const aFichas = document.getElementById("a_fichas");
 
     const iconLogout = document.getElementById("icon_logout");
 
-    function logout() {
-        sessionStorage.clear();
-        window.location = "index.html";
-    }
 
     aFichas.style.display = "none";
     cadastro.style.display = "flex";
