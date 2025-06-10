@@ -128,6 +128,9 @@ SELECT
 FROM
 	dashboard;
 
+DELETE FROM favoritos WHERE fk_vilao = 2 AND fk_usuario = 1;
+
+
 CREATE VIEW porcentagemTipos as
 SELECT p.tipo, COUNT(*) AS quantidade 
 FROM favoritos f
@@ -141,7 +144,8 @@ CREATE OR REPLACE VIEW nomeMaisFavoritado as
 SELECT
 	p.nome,
     p.apelido,
-    count(f.fk_personagem) as qtdFavoritados
+    p.foto,
+    SUM(f.fk_usuario) qtdFavoritados
 FROM
 	favoritos f
 JOIN
@@ -149,13 +153,11 @@ JOIN
 ON 
 	p.id = f.fk_personagem
 GROUP BY
-	p.apelido, p.nome
+	p.foto, p.apelido, p.nome
 ORDER BY
-	count(f.fk_personagem) desc limit 1;
+	qtdFavoritados desc LIMIT 1;
     
 SELECT * FROM nomeMaisFavoritado;
-
-SELECT * FROM personagem ORDER BY apelido asc;
 
 
     

@@ -2,9 +2,9 @@
 
 :root {
   --tamanho-header: 80px;
-  --tamanho-conteudoInicial: calc(100% - var(--tamanho-header) - var(--tamanho-footer) - 2px);
-  --tamanho-simulador: calc(100% - var(--tamanho-header) - var(--tamanho-footer) - 2px);
-  --tamanho-login: calc(100% - var(--tamanho-header) - var(--tamanho-footer) - 42px);
+  --tamanho-conteudoInicial: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 42px);
   --tamanho-footer: 65px;
   --vermelho: red;
   --verde: #2CFF05;
@@ -206,7 +206,7 @@
 .modal {
   display: none;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   justify-content: center;
   align-items: center;
   margin-left: 30px;
@@ -243,4 +243,8 @@
 .modal .card_modal img {
   width: 100px;
   height: 100px;
+}
+
+.modal.sumir {
+  
 }

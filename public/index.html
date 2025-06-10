@@ -136,18 +136,16 @@
 
   function logout() {
     sessionStorage.clear();
-    window.location.href = "index.html";
+    window.location = "index.html";
   }
 
-  aFichas.style.display = "none";
   cadastro.style.display = "flex";
   iconLogout.style.display = "none";
 
-  if (sessionStorage.getItem("NOME_USUARIO") != null) {
-    cadastro.innerHTML = `<li><a href="perfil.html">Olá, ${sessionStorage.getItem("NOME_USUARIO")}</a></li>`;
+  if (sessionStorage.NOME_USUARIO != undefined) {
+    cadastro.innerHTML = `<li><a href="perfil.html">Olá, ${sessionStorage.NOME_USUARIO}</a></li>`;
     cadastro.style.justifyContent = "center";
-    aFichas.style.display = "block";
-    iconLogout.style.display = "flex";
+    iconLogout.style.display = "block";
   }
 
 </script>

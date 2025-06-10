@@ -20,6 +20,14 @@
     <div class="carregamento" id="carregamento"><img src="./assets/imgs/logoBatman.gif" alt="Logo carregando"></div>
     <div class="conteudoPrincipal" id="conteudoPrincipal">
 
+        <!-- Div Modal para informar o usuário -->
+        <div class="modal" id="modal">
+            <div class="card_modal" id="card_modal">
+                <img id="imagem_resposta" class="imagem_resposta" alt="Imagem de retorno para o usuário">
+                <p class="info_usuário" id="info_usuario"></p>
+            </div>
+        </div>
+
         <!--Header-->
         <div class="header">
             <div class="container">
@@ -86,6 +94,13 @@
 </html>
 
 <script>
+
+    if (sessionStorage.ID_USUARIO != undefined) {
+        alert('Você não pode acessar essa página já logado!')
+
+        window.location = "index.html";
+    }
+
     //Função destinada a exibir a senha ou ocultar ela, conforme o usuário clica no botão ao lado da input
     function mostrarOcultarSenha() {
         const campoSenha = document.getElementById("senha_input"); //Guarda o id do campo senha
@@ -126,12 +141,12 @@
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            let mensagem = "Preencha todos os campos, para realizar o cadastro"
+
+            let respostaModal = false;
+            exibirModal(respostaModal, mensagem);
 
             return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -152,6 +167,8 @@
             if (resposta.ok) {
                 console.log(resposta);
 
+
+
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
@@ -161,6 +178,11 @@
                     sessionStorage.SENHA_USUARIO = json.senha;
                     console.log("EMAIL_USUARIO: " + sessionStorage.EMAIL_USUARIO);
                     console.log("ID_USUARIO: " + sessionStorage.ID_USUARIO);
+
+                    let mensagem = `Login realizado com sucesso!, bem-vindo ${sessionStorage.NOME_USUARIO}`
+
+                    let respostaModal = true;
+                    exibirModal(respostaModal, mensagem);
 
                     if (json.email == "k@.com" && json.senha == "admin") {
                         var admin = true;
@@ -181,11 +203,17 @@
                             window.location = "./index.html";
                         }
 
-                    }, 1000); // apenas para exibir o loading
+                    }, 1500);
 
                 });
 
             } else {
+
+                let mensagem = "Email ou senha inválido!"
+
+                let respostaModal = false;
+                exibirModal(respostaModal, mensagem);
+
 
                 console.log("Houve um erro ao tentar realizar o login!");
 
@@ -201,10 +229,6 @@
         return false;
     }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
-
     const cadastro = document.getElementById("cadastro");
 
     const aFichas = document.getElementById("a_fichas");
@@ -217,6 +241,32 @@
         cadastro.innerHTML = `<li><a href="perfil.html">Olá, ${sessionStorage.getItem("NOME_USUARIO")}</a></li>`;
         cadastro.style.justifyContent = "center";
         aFichas.style.display = "block";
+    }
+
+    function exibirModal(respostaModal, mensagem) {
+        const modal = document.getElementById("modal");
+        const cardModal = document.getElementById("card_modal")
+        const infoUsuario = document.getElementById("info_usuario");
+        const imagemResposta = document.getElementById("imagem_resposta");
+
+
+        if (respostaModal == true) {
+            imagemResposta.src = "./assets/imgs/imgCerto.png"
+        } else {
+            imagemResposta.src = "./assets/imgs/imgErro.png"
+        }
+
+        infoUsuario.innerHTML = mensagem;
+        modal.style.display = "flex";
+
+        setTimeout(ocultarModal, 3000)
+
+    }
+
+    function ocultarModal() {
+        const modal = document.getElementById("modal");
+
+        modal.style.display = "none";
     }
 
 
