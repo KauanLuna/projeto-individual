@@ -18,6 +18,14 @@
     <div class="carregamento" id="carregamento"><img src="./assets/imgs/logoBatman.gif" alt="Logo carregando"></div>
     <div class="conteudoPrincipal" id="conteudoPrincipal">
 
+        <!-- Div Modal para informar o usuário -->
+        <div class="modal" id="modal">
+            <div class="card_modal" id="card_modal">
+                <img id="imagem_resposta" class="imagem_resposta" alt="Imagem de retorno para o usuário">
+                <p class="info_usuário" id="info_usuario"></p>
+            </div>
+        </div>
+
         <!--header inicio-->
         <div class="header">
             <div class="container">
@@ -27,7 +35,7 @@
                         <a href="index.html">Inicial</a>
                     </li>
                     <li class="a_fichas">
-                        <a id="a_fichas" href="fichas.html">Fichas</a>
+                        <a id="a_fichas" href="fichas.html">Personagens</a>
                     </li>
                     <li class="agora">
                         <a href="#">Suas Fichas</a>
@@ -155,12 +163,40 @@
             })
         }).then(res => {
             if (res.ok) {
-                alert("Vilão removido dos favoritos!");
-                listarFavoritos(); // Atualiza a lista
+                let mensagem = "Personagem desfavoritado com sucesso!"
+
+                let respostaModal = true;
+                exibirModal(respostaModal, mensagem);
+                listarFavoritos(); // Chama a função novamente para atualizar a lista
             }
         });
     }
 
 
+    function exibirModal(respostaModal, mensagem) {
+        const modal = document.getElementById("modal");
+        const cardModal = document.getElementById("card_modal")
+        const infoUsuario = document.getElementById("info_usuario");
+        const imagemResposta = document.getElementById("imagem_resposta");
+        
+        
+        if (respostaModal == true) {
+            imagemResposta.src = "./assets/imgs/imgCerto.png"
+        } else {
+            imagemResposta.src = "./assets/imgs/imgErro.png"
+        }
+
+        infoUsuario.innerHTML = mensagem;
+        modal.style.display = "flex";
+
+        setTimeout(ocultarModal, 3000)
+
+    }
+
+    function ocultarModal() {
+        const modal = document.getElementById("modal");
+
+        modal.style.display = "none";
+    }
 
 </script>

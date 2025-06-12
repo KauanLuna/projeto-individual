@@ -40,7 +40,7 @@ body {
 }
 
 .carregento.sumir {
-  opacity: 0;
+  opacity: 0; 
 }
 
 .conteudoPrincipal {
@@ -198,7 +198,7 @@ body {
   background-color: var(--vermelho);
   color: var(--preto);
   transition: all 0.6s ease;
-  scale: 1.1;
+  scale: 1.1; transform: rotateY(15deg); 
 }
 
 

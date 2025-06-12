@@ -121,13 +121,13 @@ function plotarGraficoFavoritos(favoritos) {
 
 
   const ctx = document.getElementById('TotalFavoritos').getContext('2d');
-  const TotalFavoritos = new Chart(ctx, {
+  new Chart(ctx, {
     type: 'bar',
     data: {
       labels: nomes,
       datasets: [{
         label: 'Quantidade de Favoritos',
-        data: DadosFavoritos, 
+        data: DadosFavoritos,
         borderWidth: 1
       }]
     },
@@ -171,7 +171,7 @@ function plotarGraficoFavoritos(favoritos) {
               size: 17
             }
           },
-          
+
         },
         title: {
           display: true,
@@ -202,7 +202,7 @@ function plotarGraficoTipos(tipos) {
   }
 
   const ctx = document.getElementById('TotalTipos').getContext('2d');
-   new Chart(ctx, {
+  new Chart(ctx, {
     type: 'pie',
     data: {
       labels: nomes,

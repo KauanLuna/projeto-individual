@@ -75,6 +75,8 @@ INSERT INTO favoritos(fk_usuario, fk_personagem) VALUES
 SELECT * FROM favoritos;
 
 SELECT * FROM usuario; 
+
+SELECT * from personagem;
     
 CREATE OR REPLACE VIEW favoritosUsuarios AS
 SELECT
@@ -96,6 +98,8 @@ JOIN
 	personagem p
 ON
 	p.id = f.fk_personagem;
+    
+SELECT * from favoritosUsuarios;
     
 SELECT 
 	* 
