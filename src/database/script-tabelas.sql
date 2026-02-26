@@ -9,6 +9,16 @@ CREATE TABLE usuario (
     senha VARCHAR(25) NOT NULL
 );
 
+CREATE TABLE avaliacao (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR(255) NOT NULL,
+    nota INT NOT NULL,
+    fk_usuario INT,
+    CONSTRAINT fkAvaliacaoUsuario FOREIGN KEY (fk_usuario)
+        REFERENCES usuario(id),
+    CONSTRAINT chkNotaAvaliacao CHECK (nota >= 0 AND nota <= 10)
+);
+
 INSERT INTO usuario(nome, email, senha) VALUES
 	('Kauan', 'k@.com', 'admin');
     
@@ -166,5 +176,3 @@ SELECT * FROM nomeMaisFavoritado;
 
     
     
-
-
