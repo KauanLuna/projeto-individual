@@ -20,6 +20,7 @@ const personagensRouter = require("./src/routes/personagens");
 const indexRouter = require("./src/routes/index");
 const usuarioRouter = require("./src/routes/usuarios");
 const avisosRouter = require("./src/routes/avisos");
+const avaliacoesRouter = require("./src/routes/avaliacoes");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,6 +33,7 @@ app.use("/personagens", personagensRouter)
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
+app.use("/avaliacoes", avaliacoesRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
