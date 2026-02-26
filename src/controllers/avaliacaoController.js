@@ -51,6 +51,8 @@ function publicar(req, res) {
         res.status(400).send("A nota está indefinida!");
     } else if (Number.isNaN(notaNumero)) {
         res.status(400).send("A nota precisa ser um número!");
+    } else if (!Number.isInteger(notaNumero)) {
+        res.status(400).send("A nota precisa ser um número inteiro!");
     } else if (notaNumero < 0 || notaNumero > 10) {
         res.status(400).send("A nota precisa estar entre 0 e 10!");
     } else if (idUsuario == undefined) {
@@ -84,6 +86,8 @@ function editar(req, res) {
         res.status(400).send("A nota está indefinida!");
     } else if (Number.isNaN(notaNumero)) {
         res.status(400).send("A nota precisa ser um número!");
+    } else if (!Number.isInteger(notaNumero)) {
+        res.status(400).send("A nota precisa ser um número inteiro!");
     } else if (notaNumero < 0 || notaNumero > 10) {
         res.status(400).send("A nota precisa estar entre 0 e 10!");
     } else if (idAvaliacao == undefined) {
@@ -108,19 +112,23 @@ function editar(req, res) {
 function deletar(req, res) {
     var idAvaliacao = req.params.idAvaliacao;
 
-    avaliacaoModel.deletar(idAvaliacao)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        )
-        .catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao deletar a avaliação: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
+    if (idAvaliacao == undefined) {
+        res.status(403).send("O id da avaliação está indefinido!");
+    } else {
+        avaliacaoModel.deletar(idAvaliacao)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao deletar a avaliação: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
 }
 
 module.exports = {
