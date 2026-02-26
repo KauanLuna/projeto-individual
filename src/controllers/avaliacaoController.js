@@ -42,18 +42,21 @@ function listarPorUsuario(req, res) {
 function publicar(req, res) {
     var descricao = req.body.descricao;
     var nota = req.body.nota;
+    var notaNumero = Number(nota);
     var idUsuario = req.params.idUsuario;
 
     if (descricao == undefined) {
         res.status(400).send("A descrição está indefinida!");
     } else if (nota == undefined) {
         res.status(400).send("A nota está indefinida!");
-    } else if (Number.isNaN(Number(nota))) {
+    } else if (Number.isNaN(notaNumero)) {
         res.status(400).send("A nota precisa ser um número!");
+    } else if (notaNumero < 0 || notaNumero > 10) {
+        res.status(400).send("A nota precisa estar entre 0 e 10!");
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        avaliacaoModel.publicar(descricao, Number(nota), idUsuario)
+        avaliacaoModel.publicar(descricao, notaNumero, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -72,18 +75,21 @@ function publicar(req, res) {
 function editar(req, res) {
     var novaDescricao = req.body.descricao;
     var novaNota = req.body.nota;
+    var notaNumero = Number(novaNota);
     var idAvaliacao = req.params.idAvaliacao;
 
     if (novaDescricao == undefined) {
         res.status(400).send("A descrição está indefinida!");
     } else if (novaNota == undefined) {
         res.status(400).send("A nota está indefinida!");
-    } else if (Number.isNaN(Number(novaNota))) {
+    } else if (Number.isNaN(notaNumero)) {
         res.status(400).send("A nota precisa ser um número!");
+    } else if (notaNumero < 0 || notaNumero > 10) {
+        res.status(400).send("A nota precisa estar entre 0 e 10!");
     } else if (idAvaliacao == undefined) {
         res.status(403).send("O id da avaliação está indefinido!");
     } else {
-        avaliacaoModel.editar(novaDescricao, Number(novaNota), idAvaliacao)
+        avaliacaoModel.editar(novaDescricao, notaNumero, idAvaliacao)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -92,7 +98,7 @@ function editar(req, res) {
             .catch(
                 function (erro) {
                     console.log(erro);
-                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                    console.log("Houve um erro ao realizar a edição: ", erro.sqlMessage);
                     res.status(500).json(erro.sqlMessage);
                 }
             );
@@ -111,7 +117,7 @@ function deletar(req, res) {
         .catch(
             function (erro) {
                 console.log(erro);
-                console.log("Houve um erro ao deletar o post: ", erro.sqlMessage);
+                console.log("Houve um erro ao deletar a avaliação: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             }
         );
